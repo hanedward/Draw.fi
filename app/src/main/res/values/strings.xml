@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Draw.fi</string>
+    <string name="facebook_app_id">203419760094933</string>
+    <string name="fb_login_protocol_scheme">fb203419760094933</string>
+</resources>

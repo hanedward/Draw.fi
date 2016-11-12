@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "475121065312",
+    "firebase_url": "https://drawifiapp.firebaseio.com",
+    "project_id": "drawifiapp",
+    "storage_bucket": "drawifiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475121065312:android:e57e0491f64f157b",
+        "android_client_info": {
+          "package_name": "csci201.han.edward.fi.draw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475121065312-nt5jhbkfmtb6782k600mse459k7p9cra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [{"current_key": ""}],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
