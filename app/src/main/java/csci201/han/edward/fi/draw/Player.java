@@ -1,0 +1,38 @@
+package csci201.han.edward.fi.draw;
+
+/**
+ * Created by AlecFong on 11/12/16.
+ */
+
+public class Player {
+
+    private String uid;
+    private String firstName;
+    private String lastName;
+
+    public Player(String id, String fName, String lName){
+        uid = id;
+        firstName = fName;
+        lastName = lName;
+    }
+
+    public String getUid(){
+        return uid;
+    }
+
+    public String getFirstName(){
+        return firstName;
+    }
+
+    public String getLastName(){
+        return lastName;
+    }
+
+    public void setFirstName(String name){
+        firstName = name;
+    }
+
+    public void setLastName(String name){
+        lastName = name;
+    }
+}
