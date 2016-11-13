@@ -65,13 +65,19 @@ public class MainActivity extends AppCompatActivity {
                     mReference.child("lobby_users").child(key).child("opponentKey").setValue(s);
 
                     //set the opponent of the users in the users tree
-                    String key2 = (String)FirebaseRetrieve.get(mReference.child("lobby_users").child(s).child("uid"));
-                    mReference.child("users").child(key2).child("opponentKey").setValue(id);
-                    mReference.child("users").child(id).child("opponentKey").setValue(key2);
+                    mReference.child("lobby_users").child(s).child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String value = (String)dataSnapshot.getValue();
+                            mReference.child("users").child(value).child("opponentKey").setValue(id);
+                            mReference.child("users").child(id).child("opponentKey").setValue(value);
+                        }
 
-                    //Save the two people that are moving on to the next screen
-                    String opponent = key2;
-                    String myself = id;
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
 
                     //remove each other from the lobby_users tree
                     mReference.child("lobby_users").child(s).removeValue();
