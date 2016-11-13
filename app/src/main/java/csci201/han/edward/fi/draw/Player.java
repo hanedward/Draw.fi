@@ -12,15 +12,21 @@ public class Player implements Serializable{
     private String firstName;
     private String lastName;
     private String oponentId;
+    String key;
 
-    public Player(String id, String fName, String lName){
+    public Player(String id, String fName, String lName, String key){
         uid = id;
         firstName = fName;
         lastName = lName;
+        this.key = key;
     }
 
     public String getUid(){
         return uid;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getFirstName(){

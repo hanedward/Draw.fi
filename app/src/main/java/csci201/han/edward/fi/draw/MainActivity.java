@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public DatabaseReference mReference;
     int pair;
     String id;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,37 +49,43 @@ public class MainActivity extends AppCompatActivity {
         String name = inBundle.get("name").toString();
         String surname = inBundle.get("surname").toString();
         id = inBundle.get("id").toString();
-        Player player = new Player(id, name, surname);
+        key = inBundle.get("key").toString();
+
+        Player player = new Player(id, name, surname, key);
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 
-        mReference.addChildEventListener(new ChildEventListener() {
+        mReference.child("lobby_users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 //String value = dataSnapshot.getValue(String.class);
                 //DataSnapshot[] temp = dataSnapshot.getChildren();
-                pair = pair(dataSnapshot);
-
-                if(pair != -1) {
-                    String opponent;
-                    if(pair == 0) {
-                        int count = 0;
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            if(count == 1) {
-                                opponent = data.getKey();
-                            }
-                        }
-                    }
-                    if(pair == 1) {
-                        int count = 0;
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            if(count == 0) {
-                                opponent = data.getKey();
-                            }
-                        }
-                    }
-                    mReference.child("lobby_users").child(id).removeValue();
+                if(s != null) {
+                    mReference.child("lobby_users").child(s).removeValue();
+                    mReference.child("lobby_users").child(key).removeValue();
                 }
+//                pair = pair();
+//
+//                if(pair != -1) {
+//                    String opponent;
+//                    if(pair == 0) {
+//                        int count = 0;
+//                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                            if(count == 1) {
+//                                opponent = data.getKey();
+//                            }
+//                        }
+//                    }
+//                    if(pair == 1) {
+//                        int count = 0;
+//                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+//                            if(count == 0) {
+//                                opponent = data.getKey();
+//                            }
+//                        }
+//                    }
+//                    mReference.child("lobby_users").child(id).removeValue();
+//                }
 
             }
 
@@ -111,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
-                mReference.child("users").child(id).removeValue();
-                mReference.child("lobby_users").child(id).removeValue();
+                //mReference.child("users").child(id).removeValue();
+                mReference.child("lobby_users").child(key).removeValue();
                 mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -134,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public int pair(DataSnapshot dataSnapshot) {
+
+
         System.out.println("Entered the pair function");
         int count = 0;
         System.out.println("children count: " + dataSnapshot.getChildrenCount());
