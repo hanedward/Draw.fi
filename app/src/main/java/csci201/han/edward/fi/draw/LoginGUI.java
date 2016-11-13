@@ -142,9 +142,9 @@ public class LoginGUI extends FragmentActivity{
                 profileTracker.startTracking();
                 Profile profile = Profile.getCurrentProfile();
 
-                if (profile != null) {
+                if (true) {
                     //get data here
-                    String key = String.valueOf(SystemClock.uptimeMillis());
+                    String key = mReference.child("lobby_users").push().getKey();
                     toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
 
                     mReference.child("users").child(profile.getId()).setValue(toAdd);
