@@ -63,17 +63,20 @@ public class MainActivity extends AppCompatActivity {
                     //set each others opponents
                     mReference.child("lobby_users").child(s).child("opponentKey").setValue(key);
                     mReference.child("lobby_users").child(key).child("opponentKey").setValue(s);
-                    String key2 = mReference.child("lobby_users").child(s).child("uid").toString();
+
+                    //set the opponent of the users in the users tree
+                    String key2 = (String)FirebaseRetrieve.get(mReference.child("lobby_users").child(s).child("uid"));
                     mReference.child("users").child(key2).child("opponentKey").setValue(id);
                     mReference.child("users").child(id).child("opponentKey").setValue(key2);
 
                     //Save the two people that are moving on to the next screen
-                    String opponent = s;
-                    String myself = key;
+                    String opponent = key2;
+                    String myself = id;
 
                     //remove each other from the lobby_users tree
                     mReference.child("lobby_users").child(s).removeValue();
                     mReference.child("lobby_users").child(key).removeValue();
+
                 }
             }
 
@@ -109,13 +112,18 @@ public class MainActivity extends AppCompatActivity {
                         if (mReference.child("lobby_users") != null && mReference.child("lobby_users").child(key) != null) {
                             mReference.child("lobby_users").child(key).removeValue();
 
+                            mReference.child("users").child(id).child("opponentKey").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    String value = (String) dataSnapshot.getValue();
+                                    mReference.child("users").child(value).child("opponentKey").setValue("none");
+                                }
 
-                            //need to remove this user from the opponent value of any other users
-                            System.out.println("Checking what the toString is: " + mReference.child("users").child(id).child("opponentKey").toString());
-                            if(!mReference.child("users").child(id).child("opponentKey").toString().equals("none")) {
-                                String key3 = mReference.child("users").child(id).child("opponentKey").toString();
-                                mReference.child("users").child(key3).child("opponentKey").setValue("none");
-                            }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
 
                             //now set my opponent key to empty
                             mReference.child("users").child(id).child("opponentKey").setValue("none");
