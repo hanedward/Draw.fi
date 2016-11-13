@@ -90,38 +90,6 @@ public class LoginGUI extends FragmentActivity{
         database = FirebaseDatabase.getInstance();
         mReference = database.getReference();
 
-        mReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //String value = dataSnapshot.getValue(String.class);
-                //long count = Long.parseLong(dataSnapshot.getValue(String.class)) + 1;
-                //String temp = "" + count + "";
-                //mReference.child("numberOfUsers").setValue(temp);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                //String value = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
 
         accessTokenTracker = new AccessTokenTracker() {
             @Override
