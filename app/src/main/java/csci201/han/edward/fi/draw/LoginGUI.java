@@ -1,10 +1,16 @@
 package csci201.han.edward.fi.draw;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,17 +35,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginGUI extends FragmentActivity{
 
-    private TextView appName;
-    private Typeface custom_font;
-//    private EditText usernameField;
-//    private EditText passwordField;
-//    private Button loginButton;
-    private Button sandBoxButton;
     private LoginButton loginButton;
     private Button sandboxButton;
     private CallbackManager callbackManager;
@@ -47,6 +49,7 @@ public class LoginGUI extends FragmentActivity{
     private ProfileTracker profileTracker;
     private FirebaseDatabase database;
     private DatabaseReference mReference;
+    //Player toAdd;
 
 
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
@@ -54,6 +57,20 @@ public class LoginGUI extends FragmentActivity{
         public void onSuccess(LoginResult loginResult) {
             Profile profile = Profile.getCurrentProfile();
             mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+            mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+            mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = String.valueOf(dataSnapshot.getValue());
+                    long count = Long.parseLong(value) + 1;
+                    mReference.child("numberOfUsers").setValue(count);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
             nextActivity(profile);
         }
 
@@ -77,39 +94,11 @@ public class LoginGUI extends FragmentActivity{
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
+
         setContentView(R.layout.activity_login_gui);
 
         database = FirebaseDatabase.getInstance();
         mReference = database.getReference();
-
-        mReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //String value = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                //String value = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
 
 
         accessTokenTracker = new AccessTokenTracker() {
@@ -134,12 +123,49 @@ public class LoginGUI extends FragmentActivity{
         callback = new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //AccessToken accessToken = loginResult.getAccessToken();
-                Profile profile = Profile.getCurrentProfile();
-                mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                AccessToken accessToken = loginResult.getAccessToken();
 
+                accessTokenTracker = new AccessTokenTracker() {
+                    @Override
+                    protected void onCurrentAccessTokenChanged(AccessToken accessToken, AccessToken accessToken1) {
+
+                    }
+                };
+                accessTokenTracker.startTracking();
+
+                profileTracker = new ProfileTracker() {
+                    @Override
+                    protected void onCurrentProfileChanged(Profile profile, Profile profile1) {
+
+                    }
+                };
+                profileTracker.startTracking();
+                Profile profile = Profile.getCurrentProfile();
+
+                if (true) {
+                    //get data here
+                    String key = mReference.child("lobby_users").push().getKey();
+                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
+
+                    mReference.child("users").child(profile.getId()).setValue(toAdd);
+                    mReference.child("lobby_users").child(key).setValue(toAdd);
+                    //mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                    //mReference.child("lobby_users").child("Zach").setValue("Testing User");
+                    mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String value = String.valueOf(dataSnapshot.getValue());
+                            long count = Long.parseLong(value) + 1;
+                            mReference.child("numberOfUsers").setValue(count);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
                 nextActivity(profile);
-                //Toast.makeText(getApplicationContext(), "Logging in as " + profile.getFirstName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -187,6 +213,7 @@ public class LoginGUI extends FragmentActivity{
             main.putExtra("name", profile.getFirstName());
             main.putExtra("surname", profile.getLastName());
             main.putExtra("id", profile.getId());
+            //main.putExtra("key", toAdd.getKey());
             startActivity(main);
         }
     }
