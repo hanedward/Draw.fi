@@ -1,10 +1,15 @@
 package csci201.han.edward.fi.draw;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,6 +34,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,6 +92,26 @@ public class LoginGUI extends FragmentActivity{
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "csci201.han.edward.fi.draw",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+
+
+
+
+
         setContentView(R.layout.activity_login_gui);
 
         database = FirebaseDatabase.getInstance();
@@ -131,20 +158,20 @@ public class LoginGUI extends FragmentActivity{
                 };
                 profileTracker.startTracking();
                 Profile profile = Profile.getCurrentProfile();
-                System.out.println("a");
                 if (profile != null) {
-                    System.out.println("b");
                     //get data here
-                    mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-                    mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-                    mReference.child("lobby_users").child("Zach").setValue("Tesing User");
+                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName());
+
+                    mReference.child("users").child(profile.getId()).setValue(toAdd);
+                    mReference.child("lobby_users").child(profile.getId()).setValue(toAdd);
+                    //mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                    //mReference.child("lobby_users").child("Zach").setValue("Testing User");
                     mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String value = String.valueOf(dataSnapshot.getValue());
                             long count = Long.parseLong(value) + 1;
                             mReference.child("numberOfUsers").setValue(count);
-                            System.out.println("c");
                         }
 
                         @Override
@@ -153,13 +180,7 @@ public class LoginGUI extends FragmentActivity{
                         }
                     });
                 }
-                System.out.println("d");
                 nextActivity(profile);
-                //Profile profile = Profile.getCurrentProfile();
-               // mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-               // mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-
-                //Toast.makeText(getApplicationContext(), "Logging in as " + profile.getFirstName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
