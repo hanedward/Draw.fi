@@ -44,4 +44,8 @@ public class Player {
     private void resetOponent(){
         oponentId = null;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 09026e9c40a1e1c7e9bad6b2657c6aca5262b107

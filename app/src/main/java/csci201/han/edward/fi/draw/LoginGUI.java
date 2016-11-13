@@ -113,24 +113,52 @@ public class LoginGUI extends FragmentActivity{
         callback = new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //AccessToken accessToken = loginResult.getAccessToken();
+                AccessToken accessToken = loginResult.getAccessToken();
+
+                accessTokenTracker = new AccessTokenTracker() {
+                    @Override
+                    protected void onCurrentAccessTokenChanged(AccessToken accessToken, AccessToken accessToken1) {
+
+                    }
+                };
+                accessTokenTracker.startTracking();
+
+                profileTracker = new ProfileTracker() {
+                    @Override
+                    protected void onCurrentProfileChanged(Profile profile, Profile profile1) {
+
+                    }
+                };
+                profileTracker.startTracking();
                 Profile profile = Profile.getCurrentProfile();
-                mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-                mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-                mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = String.valueOf(dataSnapshot.getValue());
-                        long count = Long.parseLong(value) + 1;
-                        mReference.child("numberOfUsers").setValue(count);
-                    }
+                System.out.println("a");
+                if (profile != null) {
+                    System.out.println("b");
+                    //get data here
+                    mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                    mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                    mReference.child("lobby_users").child("Zach").setValue("Tesing User");
+                    mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String value = String.valueOf(dataSnapshot.getValue());
+                            long count = Long.parseLong(value) + 1;
+                            mReference.child("numberOfUsers").setValue(count);
+                            System.out.println("c");
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }
+                System.out.println("d");
                 nextActivity(profile);
+                //Profile profile = Profile.getCurrentProfile();
+               // mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+               // mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+
                 //Toast.makeText(getApplicationContext(), "Logging in as " + profile.getFirstName(), Toast.LENGTH_SHORT).show();
             }
 

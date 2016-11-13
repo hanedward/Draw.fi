@@ -133,22 +133,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public int pair(DataSnapshot dataSnapshot) {
+        System.out.println("Entered the pair function");
         int count = 0;
+        System.out.println("children count: " + dataSnapshot.getChildrenCount());
         if(dataSnapshot.getChildrenCount() < 2) {
+            System.out.println("returning -1 a");
             return -1;
         }
         for (DataSnapshot data : dataSnapshot.getChildren()) {
             if (count > 1) {
+                System.out.println("returning -1 b");
                 return -1;
             }
 
-            if (data.getKey() == id) {
+            if (data.getKey().equals(id)) {
+                System.out.println("returning " + count);
                 return count;
             }
 
             count++;
         }
-
+        System.out.println("returning -1 c");
         return -1;
     }
 
