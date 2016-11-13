@@ -2,25 +2,39 @@ package csci201.han.edward.fi.draw;
 
 import java.io.Serializable;
 
-/**
- * Created by AlecFong on 11/12/16.
- */
 
 public class Player implements Serializable{
 
     private String uid;
     private String firstName;
     private String lastName;
-    private String oponentId;
+    private String opponentKey;
+    private String mKeyword;
+    String key;
 
-    public Player(String id, String fName, String lName){
+    public Player(String id, String fName, String lName, String key){
         uid = id;
         firstName = fName;
         lastName = lName;
+        this.key = key;
+        mKeyword = "";
+        opponentKey = "none";
     }
 
     public String getUid(){
         return uid;
+    }
+
+    public String getKeyword() {
+        return mKeyword;
+    }
+
+    public void setKeyword(String keyword) {
+        mKeyword = keyword;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getFirstName(){
@@ -39,12 +53,16 @@ public class Player implements Serializable{
         lastName = name;
     }
 
-    public void setOponentId(String id){
-        oponentId = id;
+    public void setOpponentKey(String id){
+        opponentKey = id;
     }
 
-    private void resetOponent(){
-        oponentId = null;
+    public String getOpponentKey() {
+        return opponentKey;
+    }
+
+    private void resetOpponent(){
+        opponentKey = "none";
     }
 <<<<<<< HEAD
 }

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -48,6 +49,7 @@ public class LoginGUI extends FragmentActivity{
     private ProfileTracker profileTracker;
     private FirebaseDatabase database;
     private DatabaseReference mReference;
+    //Player toAdd;
 
 
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
@@ -91,25 +93,6 @@ public class LoginGUI extends FragmentActivity{
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-
-
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "csci201.han.edward.fi.draw",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }
-
-
-
 
 
         setContentView(R.layout.activity_login_gui);
@@ -158,12 +141,14 @@ public class LoginGUI extends FragmentActivity{
                 };
                 profileTracker.startTracking();
                 Profile profile = Profile.getCurrentProfile();
-                if (profile != null) {
+
+                if (true) {
                     //get data here
-                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName());
+                    String key = mReference.child("lobby_users").push().getKey();
+                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
 
                     mReference.child("users").child(profile.getId()).setValue(toAdd);
-                    mReference.child("lobby_users").child(profile.getId()).setValue(toAdd);
+                    mReference.child("lobby_users").child(key).setValue(toAdd);
                     //mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
                     //mReference.child("lobby_users").child("Zach").setValue("Testing User");
                     mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -228,6 +213,7 @@ public class LoginGUI extends FragmentActivity{
             main.putExtra("name", profile.getFirstName());
             main.putExtra("surname", profile.getLastName());
             main.putExtra("id", profile.getId());
+            //main.putExtra("key", toAdd.getKey());
             startActivity(main);
         }
     }

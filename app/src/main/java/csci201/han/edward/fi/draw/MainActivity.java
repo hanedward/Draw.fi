@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public DatabaseReference mReference;
     int pair;
     String id;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,38 +49,32 @@ public class MainActivity extends AppCompatActivity {
         String name = inBundle.get("name").toString();
         String surname = inBundle.get("surname").toString();
         id = inBundle.get("id").toString();
-        Player player = new Player(id, name, surname);
+        //key = inBundle.get("key").toString();
+
+        //Player player = new Player(id, name, surname, key);
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 
-        mReference.addChildEventListener(new ChildEventListener() {
+        mReference.child("lobby_users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //String value = dataSnapshot.getValue(String.class);
-                //DataSnapshot[] temp = dataSnapshot.getChildren();
-                pair = pair(dataSnapshot);
+                key = dataSnapshot.getKey();
+                if(s != null) {
+                    //set each others opponents
+                    mReference.child("lobby_users").child(s).child("opponentKey").setValue(key);
+                    mReference.child("lobby_users").child(key).child("opponentKey").setValue(s);
+                    String key2 = mReference.child("lobby_users").child(s).child("uid").toString();
+                    mReference.child("users").child(key2).child("opponentKey").setValue(id);
+                    mReference.child("users").child(id).child("opponentKey").setValue(key2);
 
-                if(pair != -1) {
-                    String opponent;
-                    if(pair == 0) {
-                        int count = 0;
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            if(count == 1) {
-                                opponent = data.getKey();
-                            }
-                        }
-                    }
-                    if(pair == 1) {
-                        int count = 0;
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            if(count == 0) {
-                                opponent = data.getKey();
-                            }
-                        }
-                    }
-                    mReference.child("lobby_users").child(id).removeValue();
+                    //Save the two people that are moving on to the next screen
+                    String opponent = s;
+                    String myself = key;
+
+                    //remove each other from the lobby_users tree
+                    mReference.child("lobby_users").child(s).removeValue();
+                    mReference.child("lobby_users").child(key).removeValue();
                 }
-
             }
 
             @Override
@@ -104,15 +99,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
-                mReference.child("users").child(id).removeValue();
-                mReference.child("lobby_users").child(id).removeValue();
+                //mReference.child("users").child(id).removeValue();
+                if(key != null) {
+                    if (mReference.child("lobby_users") != null) {
+                        if (mReference.child("lobby_users") != null && mReference.child("lobby_users").child(key) != null) {
+                            mReference.child("lobby_users").child(key).removeValue();
+
+
+                            //need to remove this user from the opponent value of any other users
+                            System.out.println("Checking what the toString is: " + mReference.child("users").child(id).child("opponentKey").toString());
+                            if(!mReference.child("users").child(id).child("opponentKey").toString().equals("none")) {
+                                String key3 = mReference.child("users").child(id).child("opponentKey").toString();
+                                mReference.child("users").child(key3).child("opponentKey").setValue("none");
+                            }
+
+                            //now set my opponent key to empty
+                            mReference.child("users").child(id).child("opponentKey").setValue("none");
+                        }
+                    }
+                }
                 mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -133,29 +142,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public int pair(DataSnapshot dataSnapshot) {
-        System.out.println("Entered the pair function");
-        int count = 0;
-        System.out.println("children count: " + dataSnapshot.getChildrenCount());
-        if(dataSnapshot.getChildrenCount() < 2) {
-            System.out.println("returning -1 a");
-            return -1;
-        }
-        for (DataSnapshot data : dataSnapshot.getChildren()) {
-            if (count > 1) {
-                System.out.println("returning -1 b");
-                return -1;
-            }
-
-            if (data.getKey().equals(id)) {
-                System.out.println("returning " + count);
-                return count;
-            }
-
-            count++;
-        }
-        System.out.println("returning -1 c");
-        return -1;
-    }
-
 }
