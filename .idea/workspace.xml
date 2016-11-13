@@ -20,7 +20,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java" afterPath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java" />
     </list>
     <ignored path="fp_team_08.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,11 +49,11 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49107143">
-              <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.39130434">
+              <caret line="65" column="98" selection-start-line="65" selection-start-column="88" selection-end-line="65" selection-end-column="98" />
               <folding>
-                <element signature="e#4156#5212#0" expanded="true" />
-                <element signature="e#5211#5212#0" expanded="true" />
+                <element signature="e#3730#5882#0" expanded="true" />
+                <element signature="e#5881#5882#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,24 +63,30 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+              <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
               <folding>
-                <element signature="e#486#487#0" expanded="true" />
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
-                <element signature="e#568#569#0" expanded="true" />
-                <element signature="e#603#604#0" expanded="true" />
-                <element signature="e#635#636#0" expanded="true" />
-                <element signature="e#669#670#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#744#745#0" expanded="true" />
-                <element signature="e#776#777#0" expanded="true" />
-                <element signature="e#819#820#0" expanded="true" />
-                <element signature="e#850#851#0" expanded="true" />
-                <element signature="e#892#893#0" expanded="true" />
-                <element signature="e#922#923#0" expanded="true" />
-                <element signature="e#956#957#0" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#526#527#0" expanded="true" />
+                <element signature="e#552#553#0" expanded="true" />
+                <element signature="e#586#587#0" expanded="true" />
+                <element signature="e#617#618#0" expanded="true" />
+                <element signature="e#663#664#0" expanded="true" />
+                <element signature="e#697#698#0" expanded="true" />
+                <element signature="e#727#728#0" expanded="true" />
+                <element signature="e#753#754#0" expanded="true" />
+                <element signature="e#788#789#0" expanded="true" />
+                <element signature="e#820#821#0" expanded="true" />
+                <element signature="e#854#855#0" expanded="true" />
+                <element signature="e#885#886#0" expanded="true" />
+                <element signature="e#929#930#0" expanded="true" />
+                <element signature="e#961#962#0" expanded="true" />
+                <element signature="e#1004#1005#0" expanded="true" />
+                <element signature="e#1035#1036#0" expanded="true" />
+                <element signature="e#1079#1080#0" expanded="true" />
+                <element signature="e#1111#1112#0" expanded="true" />
+                <element signature="e#1149#1150#0" expanded="true" />
+                <element signature="e#1183#1184#0" expanded="true" />
+                <element signature="e#1218#1219#0" expanded="true" />
+                <element signature="e#1254#1255#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,7 +96,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="215" column="14" selection-start-line="215" selection-start-column="14" selection-end-line="215" selection-end-column="14" />
+              <caret line="149" column="67" selection-start-line="149" selection-start-column="67" selection-end-line="149" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -1961,17 +1967,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
-    <option name="y" value="55" />
+    <option name="x" value="-10" />
+    <option name="y" value="73" />
     <option name="width" value="1260" />
-    <option name="height" value="691" />
+    <option name="height" value="702" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2509,7 +2515,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="55" width="1260" height="691" extended-state="0" />
+    <frame x="-10" y="73" width="1260" height="702" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2518,7 +2524,7 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36695653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1672355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2558,8 +2564,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
           <folding>
-            <element signature="e#4156#5212#0" expanded="true" />
-            <element signature="e#5211#5212#0" expanded="true" />
+            <element signature="e#3730#5882#0" expanded="true" />
+            <element signature="e#5881#5882#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2569,22 +2575,28 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#922#923#0" expanded="true" />
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#753#754#0" expanded="true" />
+            <element signature="e#788#789#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#854#855#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1079#1080#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1183#1184#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1254#1255#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2594,8 +2606,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4156#5212#0" expanded="true" />
-            <element signature="e#5211#5212#0" expanded="true" />
+            <element signature="e#3730#5882#0" expanded="true" />
+            <element signature="e#5881#5882#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2632,46 +2644,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
-          <folding>
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#922#923#0" expanded="true" />
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="215" column="14" selection-start-line="215" selection-start-column="14" selection-end-line="215" selection-end-column="14" />
+          <caret line="149" column="67" selection-start-line="149" selection-start-column="67" selection-end-line="149" selection-end-column="67" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+          <folding>
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#552#553#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+            <element signature="e#753#754#0" expanded="true" />
+            <element signature="e#788#789#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#854#855#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1079#1080#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1183#1184#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1254#1255#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49107143">
-          <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.39130434">
+          <caret line="65" column="98" selection-start-line="65" selection-start-column="88" selection-end-line="65" selection-end-column="98" />
           <folding>
-            <element signature="e#4156#5212#0" expanded="true" />
-            <element signature="e#5211#5212#0" expanded="true" />
+            <element signature="e#3730#5882#0" expanded="true" />
+            <element signature="e#5881#5882#0" expanded="true" />
           </folding>
         </state>
       </provider>
