@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -143,7 +144,7 @@ public class LoginGUI extends FragmentActivity{
 
                 if (profile != null) {
                     //get data here
-                    String key = String.valueOf(System.currentTimeMillis());
+                    String key = String.valueOf(SystemClock.uptimeMillis());
                     toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
 
                     mReference.child("users").child(profile.getId()).setValue(toAdd);
