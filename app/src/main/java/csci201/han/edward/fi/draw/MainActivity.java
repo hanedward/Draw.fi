@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 //String value = dataSnapshot.getValue(String.class);
                 //DataSnapshot[] temp = dataSnapshot.getChildren();
+                key = dataSnapshot.getKey();
                 if(s != null) {
                     System.out.println("Removing the previous person");
                     mReference.child("lobby_users").child(s).removeValue();
                     System.out.println("Removing myself");
-                    key = dataSnapshot.getKey();
                     mReference.child("lobby_users").child(key).removeValue();
                 }
 //                pair = pair();
