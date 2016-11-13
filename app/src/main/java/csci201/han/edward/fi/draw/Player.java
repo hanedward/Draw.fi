@@ -9,6 +9,7 @@ public class Player {
     private String uid;
     private String firstName;
     private String lastName;
+    private String oponentId;
 
     public Player(String id, String fName, String lName){
         uid = id;
@@ -34,5 +35,13 @@ public class Player {
 
     public void setLastName(String name){
         lastName = name;
+    }
+
+    public void setOponentId(String id){
+        oponentId = id;
+    }
+
+    private void resetOponent(){
+        oponentId = null;
     }
 }
