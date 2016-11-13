@@ -34,12 +34,6 @@ import java.util.Map;
 
 public class LoginGUI extends FragmentActivity{
 
-    private TextView appName;
-    private Typeface custom_font;
-//    private EditText usernameField;
-//    private EditText passwordField;
-//    private Button loginButton;
-    private Button sandBoxButton;
     private LoginButton loginButton;
     private Button sandboxButton;
     private CallbackManager callbackManager;
@@ -54,6 +48,20 @@ public class LoginGUI extends FragmentActivity{
         public void onSuccess(LoginResult loginResult) {
             Profile profile = Profile.getCurrentProfile();
             mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+            mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+            mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = String.valueOf(dataSnapshot.getValue());
+                    long count = Long.parseLong(value) + 1;
+                    mReference.child("numberOfUsers").setValue(count);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
             nextActivity(profile);
         }
 
@@ -86,6 +94,9 @@ public class LoginGUI extends FragmentActivity{
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 //String value = dataSnapshot.getValue(String.class);
+                //long count = Long.parseLong(dataSnapshot.getValue(String.class)) + 1;
+                //String temp = "" + count + "";
+                //mReference.child("numberOfUsers").setValue(temp);
             }
 
             @Override
@@ -137,7 +148,20 @@ public class LoginGUI extends FragmentActivity{
                 //AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
                 mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String value = String.valueOf(dataSnapshot.getValue());
+                        long count = Long.parseLong(value) + 1;
+                        mReference.child("numberOfUsers").setValue(count);
+                    }
 
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 nextActivity(profile);
                 //Toast.makeText(getApplicationContext(), "Logging in as " + profile.getFirstName(), Toast.LENGTH_SHORT).show();
             }

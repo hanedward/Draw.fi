@@ -43,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 
+
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
                 mReference.child("users").child(id).removeValue();
+                mReference.child("lobby_users").child(id).removeValue();
                 Intent login = new Intent(MainActivity.this, LoginGUI.class);
                 startActivity(login);
                 finish();
