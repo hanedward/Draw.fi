@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 key = dataSnapshot.getKey();
                 if(s != null) {
-                    //set each others opponents
-                    mReference.child("lobby_users").child(s).child("opponentKey").setValue(key);
-                    mReference.child("lobby_users").child(key).child("opponentKey").setValue(s);
+//                    //set each others opponents
+//                    mReference.child("lobby_users").child(s).child("opponentKey").setValue(key);
+//                    mReference.child("lobby_users").child(key).child("opponentKey").setValue(s);
 
                     //set the opponent of the users in the users tree
                     mReference.child("lobby_users").child(s).child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -122,7 +122,10 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     String value = (String) dataSnapshot.getValue();
-                                    mReference.child("users").child(value).child("opponentKey").setValue("none");
+                                    System.out.println("The data snapshot value is: " + value);
+                                    if(!value.equals("none")) {
+                                        mReference.child("users").child(value).child("opponentKey").setValue("none");
+                                    }
                                 }
 
                                 @Override
@@ -136,19 +139,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = String.valueOf(dataSnapshot.getValue());
-                        long count = Long.parseLong(value) - 1;
-                        mReference.child("numberOfUsers").setValue(count);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+//                mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        String value = String.valueOf(dataSnapshot.getValue());
+//                        long count = Long.parseLong(value) - 1;
+//                        mReference.child("numberOfUsers").setValue(count);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
                 Intent login = new Intent(MainActivity.this, LoginGUI.class);
                 startActivity(login);
                 finish();

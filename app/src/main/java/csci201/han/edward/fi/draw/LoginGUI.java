@@ -151,19 +151,19 @@ public class LoginGUI extends FragmentActivity{
                     mReference.child("lobby_users").child(key).setValue(toAdd);
                     //mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
                     //mReference.child("lobby_users").child("Zach").setValue("Testing User");
-                    mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String value = String.valueOf(dataSnapshot.getValue());
-                            long count = Long.parseLong(value) + 1;
-                            mReference.child("numberOfUsers").setValue(count);
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+//                    mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            String value = String.valueOf(dataSnapshot.getValue());
+//                            long count = Long.parseLong(value) + 1;
+//                            mReference.child("numberOfUsers").setValue(count);
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//
+//                        }
+//                    });
                 }
                 nextActivity(profile);
             }
