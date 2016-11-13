@@ -49,7 +49,7 @@ public class LoginGUI extends FragmentActivity{
     private ProfileTracker profileTracker;
     private FirebaseDatabase database;
     private DatabaseReference mReference;
-    Player toAdd;
+    //Player toAdd;
 
 
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
@@ -145,7 +145,7 @@ public class LoginGUI extends FragmentActivity{
                 if (true) {
                     //get data here
                     String key = mReference.child("lobby_users").push().getKey();
-                    toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
+                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
 
                     mReference.child("users").child(profile.getId()).setValue(toAdd);
                     mReference.child("lobby_users").child(key).setValue(toAdd);
@@ -213,7 +213,7 @@ public class LoginGUI extends FragmentActivity{
             main.putExtra("name", profile.getFirstName());
             main.putExtra("surname", profile.getLastName());
             main.putExtra("id", profile.getId());
-            main.putExtra("key", toAdd.getKey());
+            //main.putExtra("key", toAdd.getKey());
             startActivity(main);
         }
     }

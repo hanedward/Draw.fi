@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         String name = inBundle.get("name").toString();
         String surname = inBundle.get("surname").toString();
         id = inBundle.get("id").toString();
-        key = inBundle.get("key").toString();
+        //key = inBundle.get("key").toString();
 
-        Player player = new Player(id, name, surname, key);
+        //Player player = new Player(id, name, surname, key);
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 
@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 //String value = dataSnapshot.getValue(String.class);
                 //DataSnapshot[] temp = dataSnapshot.getChildren();
                 if(s != null) {
+                    System.out.println("Removing the previous person");
                     mReference.child("lobby_users").child(s).removeValue();
+                    System.out.println("Removing myself");
+                    key = dataSnapshot.getKey();
                     mReference.child("lobby_users").child(key).removeValue();
                 }
 //                pair = pair();
