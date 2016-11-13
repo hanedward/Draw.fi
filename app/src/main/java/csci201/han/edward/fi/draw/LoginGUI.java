@@ -135,8 +135,11 @@ public class LoginGUI extends FragmentActivity{
                 if (profile != null) {
                     System.out.println("b");
                     //get data here
-                    mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-                    mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
+                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName());
+
+                    mReference.child("users").child(profile.getId()).setValue(toAdd);
+                    mReference.child("lobby_users").child(profile.getId()).setValue(toAdd);
+                    //mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
                     mReference.child("lobby_users").child("Zach").setValue("Tesing User");
                     mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -155,11 +158,6 @@ public class LoginGUI extends FragmentActivity{
                 }
                 System.out.println("d");
                 nextActivity(profile);
-                //Profile profile = Profile.getCurrentProfile();
-               // mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-               // mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-
-                //Toast.makeText(getApplicationContext(), "Logging in as " + profile.getFirstName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

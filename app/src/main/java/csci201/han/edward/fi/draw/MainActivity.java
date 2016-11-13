@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         String name = inBundle.get("name").toString();
         String surname = inBundle.get("surname").toString();
         id = inBundle.get("id").toString();
+        Player player = new Player(id, name, surname);
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 

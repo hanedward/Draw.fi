@@ -1,10 +1,12 @@
 package csci201.han.edward.fi.draw;
 
+import java.io.Serializable;
+
 /**
  * Created by AlecFong on 11/12/16.
  */
 
-public class Player {
+public class Player implements Serializable{
 
     private String uid;
     private String firstName;
