@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     int pair;
     String id;
     String key;
+    boolean isSecondUser = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +56,29 @@ public class MainActivity extends AppCompatActivity {
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 
+        mReference.child("lobby_users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int numChildren = (int)dataSnapshot.getChildrenCount();
+                System.out.println("Number of children in tree im looking at: " + numChildren);
+                if(numChildren != 0 && numChildren != 1) {
+                    isSecondUser = true;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         mReference.child("lobby_users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 key = dataSnapshot.getKey();
-                if(s != null) {
-//                    //set each others opponents
-//                    mReference.child("lobby_users").child(s).child("opponentKey").setValue(key);
-//                    mReference.child("lobby_users").child(key).child("opponentKey").setValue(s);
-
+                if(isSecondUser) {
+                    isSecondUser = false;
                     //set the opponent of the users in the users tree
                     mReference.child("lobby_users").child(s).child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -82,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     //remove each other from the lobby_users tree
                     mReference.child("lobby_users").child(s).removeValue();
                     mReference.child("lobby_users").child(key).removeValue();
-
+                }
+                else {
+                    System.out.println("Only user in the tree");
                 }
             }
 
@@ -139,19 +156,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-//                mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        String value = String.valueOf(dataSnapshot.getValue());
-//                        long count = Long.parseLong(value) - 1;
-//                        mReference.child("numberOfUsers").setValue(count);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
+
                 Intent login = new Intent(MainActivity.this, LoginGUI.class);
                 startActivity(login);
                 finish();
