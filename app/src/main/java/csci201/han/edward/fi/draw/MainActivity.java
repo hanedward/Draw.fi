@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     String id;
     String key;
     boolean isSecondUser = false;
+    String player1 = null;
+    String player2 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
         String name = inBundle.get("name").toString();
         String surname = inBundle.get("surname").toString();
         id = inBundle.get("id").toString();
-        //key = inBundle.get("key").toString();
 
-        //Player player = new Player(id, name, surname, key);
         welcomePrompt.setText("Welcome " + name + " " + surname);
         idPrompt.setText("Your id is " + id);
 
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int numChildren = (int)dataSnapshot.getChildrenCount();
-                System.out.println("Number of children in tree im looking at: " + numChildren);
                 if(numChildren != 0 && numChildren != 1) {
                     isSecondUser = true;
                 }
@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     for(DataSnapshot c : dataSnapshot.getChildren()) {
                         if(counter == 0) {
                             String value = (String)c.child("uid").getValue();
+                            player1 = value;
+                            player2 = id;
                             String key = (String) c.getKey();
                             mReference.child("users").child(value).child("opponentKey").setValue(id);
                             mReference.child("users").child(id).child("opponentKey").setValue(value);
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                             mReference.child("lobby_users").child(c.getKey()).removeValue();
                         }
                     }
+                    setKeyWord(player1, player2);
+                    nextActivity();
                 }
 
             }
@@ -88,58 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//        mReference.child("lobby_users").addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                key = dataSnapshot.getKey();
-//                if(isSecondUser) {
-//                    isSecondUser = false;
-//                    //set the opponent of the users in the users tree
-//                    mReference.child("lobby_users").child(s).child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot) {
-//                            String value = (String)dataSnapshot.getValue();
-//                            mReference.child("users").child(value).child("opponentKey").setValue(id);
-//                            mReference.child("users").child(id).child("opponentKey").setValue(value);
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(DatabaseError databaseError) {
-//
-//                        }
-//                    });
-//
-//                    //remove each other from the lobby_users tree
-//                    mReference.child("lobby_users").child(s).removeValue();
-//                    mReference.child("lobby_users").child(key).removeValue();
-//                }
-//                else {
-//                    System.out.println("Only user in the tree");
-//                }
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                //String value = dataSnapshot.getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,38 +113,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-//                if(key != null) {
-//                    if (mReference.child("lobby_users") != null) {
-//                        if (mReference.child("lobby_users") != null && mReference.child("lobby_users").child(key) != null) {
-//                            mReference.child("lobby_users").child(key).removeValue();
-//
-//                            mReference.child("users").child(id).child("opponentKey").addListenerForSingleValueEvent(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(DataSnapshot dataSnapshot) {
-//                                    String value = (String) dataSnapshot.getValue();
-//                                    System.out.println("The data snapshot value is: " + value);
-//                                    if(!value.equals("none")) {
-//                                        mReference.child("users").child(value).child("opponentKey").setValue("none");
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(DatabaseError databaseError) {
-//
-//                                }
-//                            });
-//
-//                            //now set my opponent key to empty
-//                            mReference.child("users").child(id).child("opponentKey").setValue("none");
-//                        }
-//                    }
-//                }
-
                 Intent login = new Intent(MainActivity.this, LoginGUI.class);
                 startActivity(login);
                 finish();
             }
         });
 
+    }
+
+    private void setKeyWord(final String playerId, final String opponentId) {
+        mReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int keywordIndex = (int) (Math.random() * dataSnapshot.child("keywords").getChildrenCount());
+                String word = (String) dataSnapshot.child("keywords").child("" + keywordIndex).getValue();
+                mReference.child("users").child(playerId).child("keyword").setValue(word);
+                mReference.child("users").child(opponentId).child("keyword").setValue(word);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void nextActivity() {
+        Intent keywordIntent = new Intent(MainActivity.this, KeywordActivity.class);
+        keywordIntent.putExtra("player1", player1);
+        keywordIntent.putExtra("player2", player2);
+        startActivity(keywordIntent);
     }
 }
