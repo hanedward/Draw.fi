@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             player1 = value;
                             player2 = id;
                             String key = (String) c.getKey();
+
                             mReference.child("users").child(value).child("opponentKey").setValue(id);
                             mReference.child("users").child(id).child("opponentKey").setValue(value);
                             mReference.child("lobby_users").child(key).removeValue();
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         if (counter == 1) {
                             mReference.child("lobby_users").child(c.getKey()).removeValue();
                         }
+                        counter++;
                     }
                     setKeyWord(player1, player2);
                     nextActivity();
@@ -103,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                         for(DataSnapshot c : dataSnapshot.getChildren()) {
                             if(c.child("uid").getValue().equals(id)) {
                                 mReference.child("lobby_users").child(c.getKey()).removeValue();
+
+                                //NEED TO CLEAR MY OPPONENT AND MY OPPONENT OPPONENT'S
                             }
                         }
                     }
