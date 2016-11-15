@@ -65,56 +65,21 @@ public class MainActivity extends AppCompatActivity {
                     isSecondUser = true;
                 }
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mReference.child("lobby_users").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                key = dataSnapshot.getKey();
                 if(isSecondUser) {
-                    isSecondUser = false;
-                    //set the opponent of the users in the users tree
-                    mReference.child("lobby_users").child(s).child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String value = (String)dataSnapshot.getValue();
+                    int counter = 0;
+                    for(DataSnapshot c : dataSnapshot.getChildren()) {
+                        if(counter == 0) {
+                            String value = (String)c.child("uid").getValue();
+                            String key = (String) c.getKey();
                             mReference.child("users").child(value).child("opponentKey").setValue(id);
                             mReference.child("users").child(id).child("opponentKey").setValue(value);
+                            mReference.child("lobby_users").child(key).removeValue();
                         }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
+                        if (counter == 1) {
+                            mReference.child("lobby_users").child(c.getKey()).removeValue();
                         }
-                    });
-
-                    //remove each other from the lobby_users tree
-                    mReference.child("lobby_users").child(s).removeValue();
-                    mReference.child("lobby_users").child(key).removeValue();
+                    }
                 }
-                else {
-                    System.out.println("Only user in the tree");
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                //String value = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -123,39 +88,105 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+//        mReference.child("lobby_users").addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                key = dataSnapshot.getKey();
+//                if(isSecondUser) {
+//                    isSecondUser = false;
+//                    //set the opponent of the users in the users tree
+//                    mReference.child("lobby_users").child(s).child("uid").addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            String value = (String)dataSnapshot.getValue();
+//                            mReference.child("users").child(value).child("opponentKey").setValue(id);
+//                            mReference.child("users").child(id).child("opponentKey").setValue(value);
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//
+//                    //remove each other from the lobby_users tree
+//                    mReference.child("lobby_users").child(s).removeValue();
+//                    mReference.child("lobby_users").child(key).removeValue();
+//                }
+//                else {
+//                    System.out.println("Only user in the tree");
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//                //String value = dataSnapshot.getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
-                //mReference.child("users").child(id).removeValue();
-                if(key != null) {
-                    if (mReference.child("lobby_users") != null) {
-                        if (mReference.child("lobby_users") != null && mReference.child("lobby_users").child(key) != null) {
-                            mReference.child("lobby_users").child(key).removeValue();
-
-                            mReference.child("users").child(id).child("opponentKey").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    String value = (String) dataSnapshot.getValue();
-                                    System.out.println("The data snapshot value is: " + value);
-                                    if(!value.equals("none")) {
-                                        mReference.child("users").child(value).child("opponentKey").setValue("none");
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-
-                            //now set my opponent key to empty
-                            mReference.child("users").child(id).child("opponentKey").setValue("none");
+                mReference.child("lobby_users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot c : dataSnapshot.getChildren()) {
+                            if(c.child("uid").getValue().equals(id)) {
+                                mReference.child("lobby_users").child(c.getKey()).removeValue();
+                            }
                         }
                     }
-                }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+//                if(key != null) {
+//                    if (mReference.child("lobby_users") != null) {
+//                        if (mReference.child("lobby_users") != null && mReference.child("lobby_users").child(key) != null) {
+//                            mReference.child("lobby_users").child(key).removeValue();
+//
+//                            mReference.child("users").child(id).child("opponentKey").addListenerForSingleValueEvent(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(DataSnapshot dataSnapshot) {
+//                                    String value = (String) dataSnapshot.getValue();
+//                                    System.out.println("The data snapshot value is: " + value);
+//                                    if(!value.equals("none")) {
+//                                        mReference.child("users").child(value).child("opponentKey").setValue("none");
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(DatabaseError databaseError) {
+//
+//                                }
+//                            });
+//
+//                            //now set my opponent key to empty
+//                            mReference.child("users").child(id).child("opponentKey").setValue("none");
+//                        }
+//                    }
+//                }
 
                 Intent login = new Intent(MainActivity.this, LoginGUI.class);
                 startActivity(login);
