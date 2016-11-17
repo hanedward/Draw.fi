@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".LobbyActivity">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/MyToolbarStyle"
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="Medium Text"-->
+        <!--android:id="@+id/id_prompt"-->
+        <!--android:layout_below="@+id/welcome_prompt"-->
+        <!--android:layout_centerHorizontal="true" />-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/welcome_prompt"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="165dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Searching for an opponent..."
+        android:id="@+id/searching_prompt"
+        android:layout_below="@+id/welcome_prompt"
+        android:layout_centerHorizontal="true" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_width="60dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="20dp"
+        style="@style/AVLoadingIndicatorView.Large"
+        android:visibility="visible"
+        app:indicatorColor="#3B5998"
+        app:indicatorName="BallPulseIndicator"
+        android:id="@+id/avi"
+        android:layout_below="@+id/searching_prompt"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout_button"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="119dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:text="Retry"
+        android:id="@+id/retryButton"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:background="@color/colorBlue"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="104dp"
+        android:layout_below="@+id/searching_prompt"
+        android:layout_toStartOf="@+id/noButton" />
+
+    <Button
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:text="No, Thanks"
+        android:id="@+id/noButton"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="15dp"
+        android:visibility="gone"
+        android:paddingRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/colorBlue"
+        android:layout_alignTop="@+id/retryButton"
+        android:layout_alignEnd="@+id/searching_prompt" />
+
+</RelativeLayout>

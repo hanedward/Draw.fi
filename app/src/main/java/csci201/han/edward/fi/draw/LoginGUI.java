@@ -1,18 +1,10 @@
 package csci201.han.edward.fi.draw;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.TextView;
 
 
 import com.facebook.AccessToken;
@@ -27,18 +19,11 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginGUI extends FragmentActivity{
 
@@ -49,6 +34,7 @@ public class LoginGUI extends FragmentActivity{
     private ProfileTracker profileTracker;
     private FirebaseDatabase database;
     private DatabaseReference mReference;
+    private String mKey = null;
     //Player toAdd;
 
 
@@ -142,29 +128,12 @@ public class LoginGUI extends FragmentActivity{
                 profileTracker.startTracking();
                 Profile profile = Profile.getCurrentProfile();
 
-                if (true) {
-                    //get data here
-                    String key = mReference.child("lobby_users").push().getKey();
-                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), key);
+                //get data here
+                mKey = mReference.child("lobby_users").push().getKey();
+                Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), mKey);
 
-                    mReference.child("users").child(profile.getId()).setValue(toAdd);
-                    mReference.child("lobby_users").child(key).setValue(toAdd);
-                    //mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-                    //mReference.child("lobby_users").child("Zach").setValue("Testing User");
-//                    mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot) {
-//                            String value = String.valueOf(dataSnapshot.getValue());
-//                            long count = Long.parseLong(value) + 1;
-//                            mReference.child("numberOfUsers").setValue(count);
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(DatabaseError databaseError) {
-//
-//                        }
-//                    });
-                }
+                mReference.child("users").child(profile.getId()).setValue(toAdd);
+                mReference.child("lobby_users").child(mKey).setValue(toAdd);
                 nextActivity(profile);
             }
 
@@ -209,10 +178,11 @@ public class LoginGUI extends FragmentActivity{
 
     private void nextActivity(Profile profile) {
         if(profile != null) {
-            Intent main = new Intent(LoginGUI.this, MainActivity.class);
+            Intent main = new Intent(LoginGUI.this, LobbyActivity.class);
             main.putExtra("name", profile.getFirstName());
             main.putExtra("surname", profile.getLastName());
             main.putExtra("id", profile.getId());
+            main.putExtra("key", profile.getId());
             //main.putExtra("key", toAdd.getKey());
             startActivity(main);
         }
