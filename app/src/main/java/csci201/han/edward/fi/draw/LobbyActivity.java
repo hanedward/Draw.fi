@@ -1,5 +1,7 @@
 package csci201.han.edward.fi.draw;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,7 @@ public class LobbyActivity extends AppCompatActivity {
     public DatabaseReference mReference;
     public Button retryButton;
     public Button noButton;
+    public TextView opponentDialoguePrompt;
     String id;
     String key;
     String mKey;
@@ -41,6 +44,7 @@ public class LobbyActivity extends AppCompatActivity {
     boolean isSecondUser = false;
     String player1 = null;
     String player2 = null;
+    String opponentName;
 
 
     private AVLoadingIndicatorView avi;
@@ -58,6 +62,7 @@ public class LobbyActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         myToolbar.setBackgroundColor(Color.parseColor("#FF3b5998"));
 
+
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
         avi.show();
 
@@ -70,6 +75,7 @@ public class LobbyActivity extends AppCompatActivity {
         searchingPrompt = (TextView) findViewById(R.id.searching_prompt);
         retryButton = (Button) findViewById(R.id.retryButton);
         noButton = (Button) findViewById(R.id.noButton);
+        opponentDialoguePrompt = (TextView) findViewById(R.id.opponent_prompt);
         //idPrompt = (TextView) findViewById(R.id.id_prompt);
 
         Bundle inBundle = getIntent().getExtras();
@@ -178,10 +184,38 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     private void nextActivity() {
-        Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
-        keywordIntent.putExtra("player1", player1);
-        keywordIntent.putExtra("player2", player2);
-        startActivity(keywordIntent);
+        //PUT THE DIALOGUE BOX HERE FOR 3 SECONDS
+        final Dialog settingGameDialog = new Dialog(this);
+        settingGameDialog.setContentView(R.layout.setting_game_layout);
+        settingGameDialog.setCancelable(false);
+
+        mReference.child("users").child(player1).child("firstName").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                opponentName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
+        settingGameDialog.show();
+
+        final Timer timer2 = new Timer();
+        timer2.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                settingGameDialog.dismiss();
+                Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
+                keywordIntent.putExtra("player1", player1);
+                keywordIntent.putExtra("player2", player2);
+                startActivity(keywordIntent);
+            }
+        }, 4000);
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
