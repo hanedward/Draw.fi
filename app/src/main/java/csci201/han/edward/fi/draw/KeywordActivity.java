@@ -76,44 +76,47 @@ public class KeywordActivity extends AppCompatActivity {
 
     public void logout() {
 
-        mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                originalKey = dataSnapshot.child("key").getValue().toString();
-                uid = dataSnapshot.child("uid").getValue().toString();
-                fName = dataSnapshot.child("firstName").getValue().toString();
-                lName = dataSnapshot.child("lastName").getValue().toString();
-
-
-
-                Player toAdd = new Player(uid, fName, lName, originalKey);
-                toAdd.setMatched("false");
-                mReference.child("lobby_users").child(originalKey).setValue(toAdd);
-
-               playerOpponent = dataSnapshot.child("opponentKey").getValue().toString();
-                System.out.println("Player opponent should be a key: " + playerOpponent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mReference.child("users").child(playerMe).child("opponentKey").setValue("none");
-        mReference.child("users").child(playerMe).child("keyword").setValue("");
-        mReference.child("users").child(playerMe).child("match").setValue("false");
+//        mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                originalKey = dataSnapshot.child("key").getValue().toString();
+//                uid = dataSnapshot.child("uid").getValue().toString();
+//                fName = dataSnapshot.child("firstName").getValue().toString();
+//                lName = dataSnapshot.child("lastName").getValue().toString();
+//
+//
+//
+//                Player toAdd = new Player(uid, fName, lName, originalKey);
+//                toAdd.setMatched("false");
+//                mReference.child("lobby_users").child(originalKey).setValue(toAdd);
+//
+//               playerOpponent = dataSnapshot.child("opponentKey").getValue().toString();
+//                System.out.println("Player opponent should be a key: " + playerOpponent);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//        mReference.child("users").child(playerMe).child("opponentKey").setValue("none");
+//        mReference.child("users").child(playerMe).child("keyword").setValue("");
+//        mReference.child("users").child(playerMe).child("match").setValue("false");
 //        mReference.child("users").child(playerOpponent).child("opponentKey").setValue("none");
 //        mReference.child("users").child(playerOpponent).child("keyword").setValue("");
 //        mReference.child("users").child(playerOpponent).child("match").setValue("false");
 
 
-//        Intent lobby = new Intent(KeywordActivity.this, LobbyActivity.class);
+        Intent login = new Intent(KeywordActivity.this, LoginGUI.class);
+        startActivity(login);
+
+
 //        lobby.putExtra("name", fName);
 //        lobby.putExtra("surname", lName);
 //        lobby.putExtra("id", uid);
 //        lobby.putExtra("key", uid);
 //        startActivity(lobby);
-        finish();
+//        finish();
         //LoginManager.getInstance().logOut();
     }
 }

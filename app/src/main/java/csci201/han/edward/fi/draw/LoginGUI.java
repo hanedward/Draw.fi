@@ -85,7 +85,7 @@ public class LoginGUI extends FragmentActivity{
         database = FirebaseDatabase.getInstance();
         mReference = database.getReference();
 
-
+        logout();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {

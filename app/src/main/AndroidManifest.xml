@@ -44,8 +44,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LobbyActivity" />
-        <activity android:name=".KeywordActivity"
-            android:launchMode="singleInstance"></activity>
+        <activity android:name=".KeywordActivity"></activity>
     </application>
 
 </manifest>
