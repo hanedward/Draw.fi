@@ -1,9 +1,11 @@
 package csci201.han.edward.fi.draw;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -90,16 +92,28 @@ public class LobbyActivity extends AppCompatActivity {
         mReference.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot c : dataSnapshot.getChildren()) {
-                    System.out.println(c.getKey().toString());
-                    if(c.getKey().toString().equals(id)) {
-                        if(c.child("match").getValue().equals("true")) {
-                            //pass in my opponents fb id and my fb id
-                            String opponentKey = c.child("opponentKey").toString();
-                            nextActivity(opponentKey);
+                if(!isSecondUser) {
+                    for(DataSnapshot c : dataSnapshot.getChildren()) {
+                        if(c.getKey().equals(id)) {
+                            if(c.child("match").getValue().equals("true")) {
+                                String opponentKey = c.child("opponentKey").toString();
+                                player2 = id;
+                                nextActivity(opponentKey);
+                            }
                         }
                     }
                 }
+//                for(DataSnapshot c : dataSnapshot.getChildren()) {
+//                    System.out.println(c.getKey().toString());
+//                    if(c.getKey().toString().equals(id)) {
+//                        if(c.child("match").getValue().equals("true")) {
+//                            //pass in my opponents fb id and my fb id
+//                            String opponentKey = c.child("opponentKey").toString();
+//                            System.out.println(opponentKey);
+//                            nextActivity(opponentKey);
+//                        }
+//                    }
+//                }
             }
 
             @Override
@@ -209,6 +223,7 @@ public class LobbyActivity extends AppCompatActivity {
 
     private void nextActivity(String oppKey) {
         //PUT THE DIALOGUE BOX HERE FOR 3 SECONDS
+        player1 = oppKey;
         settingGameDialog = new Dialog(this);
         settingGameDialog.setContentView(R.layout.setting_game_layout);
         settingGameDialog.setCancelable(false);
@@ -226,8 +241,10 @@ public class LobbyActivity extends AppCompatActivity {
             }
         });
 
-        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
+//        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
         settingGameDialog.show();
+
+
 
         final Timer timer2 = new Timer();
         timer2.schedule(new TimerTask() {
@@ -235,11 +252,21 @@ public class LobbyActivity extends AppCompatActivity {
             public void run() {
                 settingGameDialog.dismiss();
                 Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
+                System.out.println("Player 1 value: " + player1);
+                System.out.println("Player 2 value: " + player2);
                 keywordIntent.putExtra("player1", player1);
                 keywordIntent.putExtra("player2", player2);
                 startActivity(keywordIntent);
             }
         }, 4000);
+
+
+
+//        System.out.println("MADE IT INTO NEXT ACTIVITY FUNCTION");
+//        Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
+//        keywordIntent.putExtra("player1", oppKey);
+//        keywordIntent.putExtra("player2", player2);
+//        startActivity(keywordIntent);
 
     }
 
