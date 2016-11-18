@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="57dp"
-        android:text="Opponent Prompt" />
+        android:text="Found an Opponent" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -252,8 +252,6 @@ public class LobbyActivity extends AppCompatActivity {
         if(!this.isFinishing()) {
 
             settingGameDialog.show();
-            opponentDialoguePrompt = (TextView) settingView.findViewById(R.id.opponent_prompt);
-            opponentDialoguePrompt.setText("Your opponent: " + opponentName);
 
 
             final Timer timer2 = new Timer();
