@@ -25,6 +25,11 @@ public class KeywordActivity extends AppCompatActivity {
     String playerMe;
     String mKeyword;
 
+    String originalKey;
+    String uid;
+    String fName;
+    String lName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +52,10 @@ public class KeywordActivity extends AppCompatActivity {
         mKeywordView = (TextView) findViewById(R.id.keword_holder);
 
 
-        mReference.child("users").child("keyword").addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mKeyword = (String)dataSnapshot.getValue();
+                mKeyword = (String)dataSnapshot.child("keyword").getValue();
                 mKeywordView.setText(mKeyword);
             }
 
@@ -70,17 +75,23 @@ public class KeywordActivity extends AppCompatActivity {
     }
 
     public void logout() {
-        LoginManager.getInstance().logOut();
 
-        mReference.child("lobby_users").addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot c : dataSnapshot.getChildren()) {
-                    if(c.child("uid").getValue().equals(playerMe)) {
-                        //need to clear my opponent and my opponent opponent's in the user tree
-                        mReference.child("lobby_users").child(c.getKey()).removeValue();
-                    }
-                }
+                originalKey = dataSnapshot.child("key").getValue().toString();
+                uid = dataSnapshot.child("uid").getValue().toString();
+                fName = dataSnapshot.child("firstName").getValue().toString();
+                lName = dataSnapshot.child("lastName").getValue().toString();
+
+
+
+                Player toAdd = new Player(uid, fName, lName, originalKey);
+                toAdd.setMatched("false");
+                mReference.child("lobby_users").child(originalKey).setValue(toAdd);
+
+               playerOpponent = dataSnapshot.child("opponentKey").getValue().toString();
+                System.out.println("Player opponent should be a key: " + playerOpponent);
             }
 
             @Override
@@ -89,12 +100,20 @@ public class KeywordActivity extends AppCompatActivity {
             }
         });
         mReference.child("users").child(playerMe).child("opponentKey").setValue("none");
-        mReference.child("users").child(playerOpponent).child("opponentKey").setValue("none");
-        mReference.child("lobby_users").child(playerOpponent).child("opponentKey").setValue("none");
+        mReference.child("users").child(playerMe).child("keyword").setValue("");
+        mReference.child("users").child(playerMe).child("match").setValue("false");
+//        mReference.child("users").child(playerOpponent).child("opponentKey").setValue("none");
+//        mReference.child("users").child(playerOpponent).child("keyword").setValue("");
+//        mReference.child("users").child(playerOpponent).child("match").setValue("false");
 
 
-        Intent login = new Intent(KeywordActivity.this, LoginGUI.class);
-        startActivity(login);
+//        Intent lobby = new Intent(KeywordActivity.this, LobbyActivity.class);
+//        lobby.putExtra("name", fName);
+//        lobby.putExtra("surname", lName);
+//        lobby.putExtra("id", uid);
+//        lobby.putExtra("key", uid);
+//        startActivity(lobby);
         finish();
+        //LoginManager.getInstance().logOut();
     }
 }

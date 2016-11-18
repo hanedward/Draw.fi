@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -16,7 +21,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/KeywordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/KeywordActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LobbyActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LobbyActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java" afterPath="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="fp_team_08.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,8 +63,8 @@
       <file leaf-file-name="LoginGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.0">
-              <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+            <state vertical-scroll-proportion="-5.5555553">
+              <caret line="183" column="50" selection-start-line="183" selection-start-column="50" selection-end-line="183" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -64,21 +73,20 @@
       <file leaf-file-name="LobbyActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LobbyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.26909092">
-              <caret line="244" column="8" selection-start-line="244" selection-start-column="8" selection-end-line="244" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.6645768">
+              <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
               <folding>
-                <element signature="e#6320#7915#0" expanded="true" />
-                <element signature="e#7914#7915#0" expanded="true" />
-                <element signature="e#9685#10217#0" expanded="true" />
-                <element signature="e#10216#10217#0" expanded="true" />
-                <element signature="e#10834#13252#0" expanded="true" />
-                <element signature="e#10936#13225#0" expanded="true" />
-                <element signature="e#12123#12825#0" expanded="true" />
-                <element signature="e#12824#12825#0" expanded="true" />
-                <element signature="e#12942#13183#0" expanded="true" />
-                <element signature="e#13182#13183#0" expanded="true" />
-                <element signature="e#13224#13225#0" expanded="true" />
-                <element signature="e#13251#13252#0" expanded="true" />
+                <element signature="e#6371#7966#0" expanded="true" />
+                <element signature="e#7965#7966#0" expanded="true" />
+                <element signature="e#11028#13446#0" expanded="true" />
+                <element signature="e#11130#13419#0" expanded="true" />
+                <element signature="e#12317#13019#0" expanded="true" />
+                <element signature="e#13018#13019#0" expanded="true" />
+                <element signature="e#13136#13377#0" expanded="true" />
+                <element signature="e#13376#13377#0" expanded="true" />
+                <element signature="e#13418#13419#0" expanded="true" />
+                <element signature="e#13445#13446#0" expanded="true" />
+                <marker date="1479458722000" expanded="true" signature="8865:10350" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -108,7 +116,19 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/KeywordActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="114" column="26" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+              <folding>
+                <marker date="1479458728000" expanded="true" signature="3999:4260" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.958333">
+              <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -1953,15 +1973,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/Player.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LobbyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/KeywordActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="22" />
-    <option name="y" value="81" />
+    <option name="x" value="11" />
+    <option name="y" value="47" />
     <option name="width" value="1260" />
     <option name="height" value="716" />
   </component>
@@ -2045,6 +2067,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="draw" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fp_team_08" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2232,7 +2268,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="22" y="81" width="1260" height="716" extended-state="0" />
+    <frame x="11" y="47" width="1260" height="716" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2240,7 +2276,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37666667" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2302,8 +2338,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LoginGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.0">
-          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+        <state vertical-scroll-proportion="-5.5555553">
+          <caret line="183" column="50" selection-start-line="183" selection-start-column="50" selection-end-line="183" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.958333">
+          <caret line="47" column="59" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -2311,28 +2355,29 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/KeywordActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
+          <caret line="114" column="26" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+          <folding>
+            <marker date="1479458728000" expanded="true" signature="3999:4260" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/csci201/han/edward/fi/draw/LobbyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26909092">
-          <caret line="244" column="8" selection-start-line="244" selection-start-column="8" selection-end-line="244" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.6645768">
+          <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
           <folding>
-            <element signature="e#6320#7915#0" expanded="true" />
-            <element signature="e#7914#7915#0" expanded="true" />
-            <element signature="e#9685#10217#0" expanded="true" />
-            <element signature="e#10216#10217#0" expanded="true" />
-            <element signature="e#10834#13252#0" expanded="true" />
-            <element signature="e#10936#13225#0" expanded="true" />
-            <element signature="e#12123#12825#0" expanded="true" />
-            <element signature="e#12824#12825#0" expanded="true" />
-            <element signature="e#12942#13183#0" expanded="true" />
-            <element signature="e#13182#13183#0" expanded="true" />
-            <element signature="e#13224#13225#0" expanded="true" />
-            <element signature="e#13251#13252#0" expanded="true" />
+            <element signature="e#6371#7966#0" expanded="true" />
+            <element signature="e#7965#7966#0" expanded="true" />
+            <element signature="e#11028#13446#0" expanded="true" />
+            <element signature="e#11130#13419#0" expanded="true" />
+            <element signature="e#12317#13019#0" expanded="true" />
+            <element signature="e#13018#13019#0" expanded="true" />
+            <element signature="e#13136#13377#0" expanded="true" />
+            <element signature="e#13376#13377#0" expanded="true" />
+            <element signature="e#13418#13419#0" expanded="true" />
+            <element signature="e#13445#13446#0" expanded="true" />
+            <marker date="1479458722000" expanded="true" signature="8865:10350" placeholder="..." />
           </folding>
         </state>
       </provider>

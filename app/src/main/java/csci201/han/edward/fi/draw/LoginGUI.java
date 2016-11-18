@@ -80,7 +80,6 @@ public class LoginGUI extends FragmentActivity{
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
-
         setContentView(R.layout.activity_login_gui);
 
         database = FirebaseDatabase.getInstance();
