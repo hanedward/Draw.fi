@@ -90,8 +90,9 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot c : dataSnapshot.getChildren()) {
-                    if(c.getKey().equals(id)) {
-                        if(c.child("matched").getValue().equals("true")) {
+                    System.out.println(c.getKey().toString());
+                    if(c.getKey().toString().equals(id)) {
+                        if(c.child("match").getValue().equals("true")) {
                             //pass in my opponents fb id and my fb id
                             String opponentKey = c.child("opponentKey").toString();
                             nextActivity(opponentKey);
@@ -132,6 +133,8 @@ public class LobbyActivity extends AppCompatActivity {
                         }
                         counter++;
                     }
+                    mReference.child("users").child("player1").child("match").setValue("true");
+                    mReference.child("users").child("player2").child("match").setValue("true");
                     setKeyWord(player1, player2);
                     nextActivity(player1);
                 }
@@ -221,7 +224,7 @@ public class LobbyActivity extends AppCompatActivity {
             }
         });
 
-        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
+//        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
         settingGameDialog.show();
 
         final Timer timer2 = new Timer();
