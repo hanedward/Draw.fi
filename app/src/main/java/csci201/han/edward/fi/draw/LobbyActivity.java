@@ -9,6 +9,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,7 @@ public class LobbyActivity extends AppCompatActivity {
     String opponentName;
     private Dialog settingGameDialog;
     private int counter = 0;
+    View settingView;
 
 
     private AVLoadingIndicatorView avi;
@@ -81,7 +83,10 @@ public class LobbyActivity extends AppCompatActivity {
         searchingPrompt = (TextView) findViewById(R.id.searching_prompt);
         retryButton = (Button) findViewById(R.id.retryButton);
         noButton = (Button) findViewById(R.id.noButton);
-        opponentDialoguePrompt = (TextView) findViewById(R.id.opponent_prompt);
+
+        LayoutInflater v = LayoutInflater.from(this);
+        settingView = v.inflate(R.layout.setting_game_layout, null);
+
         //idPrompt = (TextView) findViewById(R.id.id_prompt);
 
         Bundle inBundle = getIntent().getExtras();
@@ -225,53 +230,55 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     private void nextActivity(String oppKey) {
-//        //PUT THE DIALOGUE BOX HERE FOR 3 SECONDS
-//        player1 = oppKey;
-//        settingGameDialog = new Dialog(this);
-//        settingGameDialog.setContentView(R.layout.setting_game_layout);
-//        settingGameDialog.setCancelable(false);
-//
-//        mReference.child("users").child(oppKey).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                //opponentName = dataSnapshot.child("firstName").getValue().toString();
-//                opponentName = "Dummy Name";
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-////        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
-//        settingGameDialog.show();
-//
-//
-//
-//        final Timer timer2 = new Timer();
-//        timer2.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                settingGameDialog.dismiss();
-//                Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
-//                System.out.println("Player 1 value: " + player1);
-//                System.out.println("Player 2 value: " + player2);
-//                keywordIntent.putExtra("player1", player1);
-//                keywordIntent.putExtra("player2", player2);
-//                startActivity(keywordIntent);
-//            }
-//        }, 4000);
+        //PUT THE DIALOGUE BOX HERE FOR 3 SECONDS
+        player1 = oppKey;
+        settingGameDialog = new Dialog(this);
+        settingGameDialog.setContentView(R.layout.setting_game_layout);
+        settingGameDialog.setCancelable(false);
+
+        mReference.child("users").child(oppKey).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //opponentName = dataSnapshot.child("firstName").getValue().toString();
+                opponentName = "Dummy Name";
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        if(!this.isFinishing()) {
+
+            settingGameDialog.show();
+            opponentDialoguePrompt = (TextView) settingView.findViewById(R.id.opponent_prompt);
+            opponentDialoguePrompt.setText("Your opponent: " + opponentName);
 
 
-        if(counter == 0) {
-            System.out.println("MADE IT INTO NEXT ACTIVITY FUNCTION");
-            Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
-            keywordIntent.putExtra("player1", oppKey);
-            keywordIntent.putExtra("player2", player2);
-            startActivity(keywordIntent);
-            counter++;
+            final Timer timer2 = new Timer();
+            timer2.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    settingGameDialog.dismiss();
+                    Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
+                    System.out.println("Player 1 value: " + player1);
+                    System.out.println("Player 2 value: " + player2);
+                    keywordIntent.putExtra("player1", player1);
+                    keywordIntent.putExtra("player2", player2);
+                    startActivity(keywordIntent);
+                }
+            }, 4000);
         }
+
+//        if(counter == 0) {
+//            System.out.println("MADE IT INTO NEXT ACTIVITY FUNCTION");
+//            Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
+//            keywordIntent.putExtra("player1", oppKey);
+//            keywordIntent.putExtra("player2", player2);
+//            startActivity(keywordIntent);
+//            counter++;
+//        }
 
     }
 
