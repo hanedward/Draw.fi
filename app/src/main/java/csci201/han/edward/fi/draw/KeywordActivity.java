@@ -51,11 +51,11 @@ public class KeywordActivity extends AppCompatActivity {
         mReference = mDatabase.getReference();
         mKeywordView = (TextView) findViewById(R.id.keword_holder);
 
-
-        mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.child("users").child(playerMe).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mKeyword = (String)dataSnapshot.child("keyword").getValue();
+                System.out.println("THE KEYWORD SHOULD BE THE WORD: " + mKeyword);
+                mKeyword = dataSnapshot.child("keyword").getValue().toString();
                 mKeywordView.setText(mKeyword);
             }
 
@@ -64,6 +64,7 @@ public class KeywordActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
