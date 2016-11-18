@@ -45,6 +45,7 @@ public class LobbyActivity extends AppCompatActivity {
     String player1 = null;
     String player2 = null;
     String opponentName;
+    private Dialog settingGameDialog;
 
 
     private AVLoadingIndicatorView avi;
@@ -133,8 +134,8 @@ public class LobbyActivity extends AppCompatActivity {
                         }
                         counter++;
                     }
-                    mReference.child("users").child("player1").child("match").setValue("true");
-                    mReference.child("users").child("player2").child("match").setValue("true");
+                    mReference.child("users").child(player1).child("match").setValue("true");
+                    mReference.child("users").child(player2).child("match").setValue("true");
                     setKeyWord(player1, player2);
                     nextActivity(player1);
                 }
@@ -208,14 +209,15 @@ public class LobbyActivity extends AppCompatActivity {
 
     private void nextActivity(String oppKey) {
         //PUT THE DIALOGUE BOX HERE FOR 3 SECONDS
-        final Dialog settingGameDialog = new Dialog(this);
+        settingGameDialog = new Dialog(this);
         settingGameDialog.setContentView(R.layout.setting_game_layout);
         settingGameDialog.setCancelable(false);
 
-        mReference.child("users").child(oppKey).child("firstName").addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.child("users").child(oppKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                opponentName = dataSnapshot.getValue().toString();
+                //opponentName = dataSnapshot.child("firstName").getValue().toString();
+                opponentName = "Dummy Name";
             }
 
             @Override
@@ -224,7 +226,7 @@ public class LobbyActivity extends AppCompatActivity {
             }
         });
 
-//        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
+        opponentDialoguePrompt.setText("Your opponent: " + opponentName);
         settingGameDialog.show();
 
         final Timer timer2 = new Timer();
