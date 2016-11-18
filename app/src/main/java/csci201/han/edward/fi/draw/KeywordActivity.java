@@ -63,43 +63,38 @@ public class KeywordActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            //case android.R.id.home: logout(); break;
+            case android.R.id.home: logout(); break;
             default: break;
         }
         return true;
     }
 
-//    public void logout() {
-//        LoginManager.getInstance().logOut();
-//
-//        //just remove myself from the lobby_users
-//        //set my opponent's opponent to none
-//        mReference.child("lobby_users").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String opponentKey = null;
-//                for(DataSnapshot c : dataSnapshot.getChildren()) {
-//                    if(c.child("uid").getValue().equals(playerMe)) {
-//                        //need to clear my opponent and my opponent opponent's in the user tree
-//                        opponentKey = c.child("opponentKey").getValue().toString();
-//                        mReference.child("lobby_users").child(c.getKey()).removeValue();
-//                    }
-//                }
-//                for(DataSnapshot c : dataSnapshot.getChildren()) {
-//                    if(c.child("uid").getValue().equals(opponentKey)) {
-//                        mReference.child("lobby_users").child(c.getKey()).removeValue();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-//        Intent login = new Intent(LobbyActivity.this, LoginGUI.class);
-//        startActivity(login);
-//        finish();
-//    }
+    public void logout() {
+        LoginManager.getInstance().logOut();
+
+        mReference.child("lobby_users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot c : dataSnapshot.getChildren()) {
+                    if(c.child("uid").getValue().equals(playerMe)) {
+                        //need to clear my opponent and my opponent opponent's in the user tree
+                        mReference.child("lobby_users").child(c.getKey()).removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mReference.child("users").child(playerMe).child("opponentKey").setValue("none");
+        mReference.child("users").child(playerOpponent).child("opponentKey").setValue("none");
+        mReference.child("lobby_users").child(playerOpponent).child("opponentKey").setValue("none");
+
+
+        Intent login = new Intent(KeywordActivity.this, LoginGUI.class);
+        startActivity(login);
+        finish();
+    }
 }
