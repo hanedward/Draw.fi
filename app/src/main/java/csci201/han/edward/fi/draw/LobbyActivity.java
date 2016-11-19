@@ -87,8 +87,6 @@ public class LobbyActivity extends AppCompatActivity {
         LayoutInflater v = LayoutInflater.from(this);
         settingView = v.inflate(R.layout.setting_game_layout, null);
 
-        //idPrompt = (TextView) findViewById(R.id.id_prompt);
-
         Bundle inBundle = getIntent().getExtras();
         name = inBundle.get("name").toString();
         surname = inBundle.get("surname").toString();
@@ -111,17 +109,6 @@ public class LobbyActivity extends AppCompatActivity {
                         }
                     }
                 }
-//                for(DataSnapshot c : dataSnapshot.getChildren()) {
-//                    System.out.println(c.getKey().toString());
-//                    if(c.getKey().toString().equals(id)) {
-//                        if(c.child("match").getValue().equals("true")) {
-//                            //pass in my opponents fb id and my fb id
-//                            String opponentKey = c.child("opponentKey").toString();
-//                            System.out.println(opponentKey);
-//                            nextActivity(opponentKey);
-//                        }
-//                    }
-//                }
             }
 
             @Override
@@ -206,9 +193,7 @@ public class LobbyActivity extends AppCompatActivity {
         });
 
         createTimer();
-        //createTimer();
-
-
+        createTimer();
 
     }
 
@@ -230,7 +215,6 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     private void nextActivity(String oppKey) {
-        //PUT THE DIALOGUE BOX HERE FOR 3 SECONDS
         player1 = oppKey;
         settingGameDialog = new Dialog(this);
         settingGameDialog.setContentView(R.layout.setting_game_layout);
@@ -259,24 +243,15 @@ public class LobbyActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     settingGameDialog.dismiss();
-                    Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
+                    Intent gameIntent = new Intent(LobbyActivity.this, GameCanvas.class);
                     System.out.println("Player 1 value: " + player1);
                     System.out.println("Player 2 value: " + player2);
-                    keywordIntent.putExtra("player1", player1);
-                    keywordIntent.putExtra("player2", player2);
-                    startActivity(keywordIntent);
+                    gameIntent.putExtra("player1", player1);
+                    gameIntent.putExtra("player2", player2);
+                    startActivity(gameIntent);
                 }
             }, 4000);
         }
-
-//        if(counter == 0) {
-//            System.out.println("MADE IT INTO NEXT ACTIVITY FUNCTION");
-//            Intent keywordIntent = new Intent(LobbyActivity.this, KeywordActivity.class);
-//            keywordIntent.putExtra("player1", oppKey);
-//            keywordIntent.putExtra("player2", player2);
-//            startActivity(keywordIntent);
-//            counter++;
-//        }
 
     }
 
@@ -325,7 +300,6 @@ public class LobbyActivity extends AppCompatActivity {
                                 Player addPlayer = new Player(id, name, surname, mKey);
                                 mReference.child("lobby_users").child(mKey).setValue(addPlayer);
                                 createTimer();
-
                             }
                         });
                         noButton.setVisibility(View.VISIBLE);

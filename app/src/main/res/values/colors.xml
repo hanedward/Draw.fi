@@ -10,4 +10,13 @@
     <color name="navyBlue">#1c407a</color>
     <color name="white">#ffffff</color>
     <color name="colorBlue">#3B5998</color>
+
+
+
+    <!--THESE COLORS AREN'T PRE-DEFINED IN ANDROID STUDIO -->
+    <color name="orange">#FF8800</color>
+    <color name="purple">#8800FF</color>
+    <color name="pink">#ffa8d2</color>
+    <color name="darkGreen">#028934</color>
+    <color name="brown">#6d351b</color>
 </resources>

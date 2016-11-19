@@ -2,4 +2,25 @@
     <string name="app_name">Draw.fi</string>
     <string name="facebook_app_id">203419760094933</string>
     <string name="fb_login_protocol_scheme">fb203419760094933</string>
+
+
+
+    <!-- 13 COLORS + ERASER -->
+    <string name="redStr">RED</string>
+    <string name="orangeStr">ORANGE</string>
+    <string name="yellowStr">YELLOW</string>
+    <string name="greenStr">GREEN</string>
+    <string name="cyanStr">CYAN</string>
+    <string name="magentaStr">MAGENTA</string>
+    <string name="blueStr">BLUE</string>
+
+    <string name="eraserStr">ERASER</string>
+    <string name="blackStr">BLACK</string>
+    <string name="grayStr">GRAY</string>
+    <string name="darkGreenStr">DARK GREEN</string>
+    <string name="brownStr">BROWN</string>
+    <string name="purpleStr">PURPLE</string>
+    <string name="pinkStr">PINK</string>
+
+
 </resources>

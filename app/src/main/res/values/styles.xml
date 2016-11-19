@@ -18,4 +18,11 @@
         <item name="android:colorBackground">#3b5998</item>
     </style>
 
+
+    <style name="CanvasStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">#3b5998</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:colorBackground">#3b5998</item>
+    </style>
+
 </resources>

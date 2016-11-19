@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/menu_RED"
+        android:title="@string/redStr"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_ORANGE"
+        android:title="@string/orangeStr"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit" />
+    <item
+        android:id="@+id/menu_YELLOW"
+        android:title="@string/yellowStr"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit" />
+    <item
+        android:id="@+id/menu_GREEN"
+        android:title="@string/greenStr"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit" />
+    <item
+        android:id="@+id/menu_CYAN"
+        android:title="@string/cyanStr"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit" />
+    <item
+        android:id="@+id/menu_BLUE"
+        android:title="@string/blueStr"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit" />
+
+
+</menu>

@@ -2,9 +2,14 @@ package csci201.han.edward.fi.draw;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.facebook.AccessToken;
@@ -24,216 +29,119 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class LoginGUI extends FragmentActivity{
 
-    private LoginButton loginButton;
+    private Button loginButton;
+    private Button createButton;
     private Button sandboxButton;
-    private CallbackManager callbackManager;
-    private AccessTokenTracker accessTokenTracker;
-    private ProfileTracker profileTracker;
-    private FirebaseDatabase database;
+
+    private EditText usernameEdit;
+    private EditText passwordEdit;
+
+    private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
-    private String mKey = null;
-    private Profile mProfile;
-    //Player toAdd;
 
-
-//    private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
-//        @Override
-//        public void onSuccess(LoginResult loginResult) {
-//            Profile profile = Profile.getCurrentProfile();
-//            mReference.child("users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-//            mReference.child("lobby_users").child(profile.getId()).setValue(profile.getFirstName() + " " + profile.getLastName());
-//            mReference.child("numberOfUsers").addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    String value = String.valueOf(dataSnapshot.getValue());
-//                    long count = Long.parseLong(value) + 1;
-//                    mReference.child("numberOfUsers").setValue(count);
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//            nextActivity(profile);
-//        }
-//
-//        @Override
-//        public void onCancel() {
-//
-//        }
-//
-//        @Override
-//        public void onError(FacebookException error) {
-//
-//        }
-//    };
-
-    //any other instance or member variables here:
-        //TODO
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-
         setContentView(R.layout.activity_login_gui);
 
-        database = FirebaseDatabase.getInstance();
-        mReference = database.getReference();
-
-        logout();
-
-        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton = (Button) findViewById(R.id.login_button);
+        createButton = (Button) findViewById(R.id.create_account_btn);
         sandboxButton = (Button) findViewById(R.id.sandbox_button);
-        sandboxButton.getBackground().setColorFilter(0xFF3b5998 , PorterDuff.Mode.MULTIPLY);
 
-        profileTracker = new ProfileTracker() {
+        usernameEdit = (EditText) findViewById(R.id.editText);
+        passwordEdit = (EditText) findViewById(R.id.editText2);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference();
+
+        addListeners();
+
+    }
+
+    public void addListeners() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-                mProfile = currentProfile;
-                nextActivity();
-            }
-        };
+            public void onClick(View v) {
+                final String username = usernameEdit.getText().toString();
+                final String password = passwordEdit.getText().toString();
 
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                System.out.println("Success");
-                //nextActivity();
-            }
+                mReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        boolean exists = false;
+                        for(DataSnapshot c : dataSnapshot.getChildren()) {
+                            System.out.println(c.getKey());
+                            if(c.getKey().equals(username)) {
+                                System.out.println("check password: " + c.child("lastName").getValue());
+                                if(c.child("lastName").getValue().equals(password)) {
+                                    exists = true;
+                                    Player p = new Player(username, username, password, username);
+                                    mReference.child("lobby_users").child(username).setValue(p);
+                                    Intent lobby = new Intent(LoginGUI.this, LobbyActivity.class);
+                                    lobby.putExtra("name", username);
+                                    lobby.putExtra("surname", password);
+                                    lobby.putExtra("id", username);
+                                    lobby.putExtra("key", username);
+                                    startActivity(lobby);
+                                }
+                            }
+                        }
+                        if(!exists) {
+                            Toast.makeText(getApplicationContext(), "This account does not exist", Toast.LENGTH_LONG).show();
+                        }
+                    }
 
-            @Override
-            public void onCancel() {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
+                    }
+                });
             }
         });
 
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String username = usernameEdit.getText().toString();
+                final String password = passwordEdit.getText().toString();
 
-//        accessTokenTracker = new AccessTokenTracker() {
-//            @Override
-//            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-//
-//            }
-//        };
-//
-//        profileTracker = new ProfileTracker() {
-//            @Override
-//            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-//                nextActivity(currentProfile);
-//            }
-//        };
-//        accessTokenTracker.startTracking();
-//        profileTracker.startTracking();
+                mReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        boolean exists = false;
+                        for(DataSnapshot c : dataSnapshot.getChildren()) {
+                            if(c.getKey().equals(username)) {
+                                exists = true;
+                                Toast.makeText(getApplicationContext(), "This username already exists", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        if(!exists) {
+                            Player p = new Player(username, username, password, username);
+                            mReference.child("users").child(username).setValue(p);
+                            mReference.child("lobby_users").child(username).setValue(p);
+                            Intent lobby = new Intent(LoginGUI.this, LobbyActivity.class);
+                            lobby.putExtra("name", username);
+                            lobby.putExtra("surname", password);
+                            lobby.putExtra("id", username);
+                            lobby.putExtra("key", username);
+                            startActivity(lobby);
+                        }
+                    }
 
-//
-//        callback = new FacebookCallback<LoginResult>() {
-//            @Override
-//            public void onSuccess(LoginResult loginResult) {
-//                AccessToken accessToken = loginResult.getAccessToken();
-//
-//                accessTokenTracker = new AccessTokenTracker() {
-//                    @Override
-//                    protected void onCurrentAccessTokenChanged(AccessToken accessToken, AccessToken accessToken1) {
-//
-//                    }
-//                };
-//                accessTokenTracker.startTracking();
-//
-//                profileTracker = new ProfileTracker() {
-//                    @Override
-//                    protected void onCurrentProfileChanged(Profile profile, Profile profile1) {
-//
-//                    }
-//                };
-//                profileTracker.startTracking();
-//                Profile profile = Profile.getCurrentProfile();
-//
-//                //get data here
-//                if(profile != null) {
-//                    mKey = mReference.child("lobby_users").push().getKey();
-//                    Player toAdd = new Player(profile.getId(), profile.getFirstName(), profile.getLastName(), mKey);
-//                    toAdd.setMatched("false");
-//                    mReference.child("users").child(profile.getId()).setValue(toAdd);
-//                    mReference.child("lobby_users").child(mKey).setValue(toAdd);
-//                    nextActivity(profile);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//
-//            }
-//
-//            @Override
-//            public void onError(FacebookException error) {
-//
-//            }
-//        };
-//        loginButton.setReadPermissions("user_friends");
-//        loginButton.registerCallback(callbackManager, callback);
-//
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        profileTracker.stopTracking();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        profileTracker.startTracking();
-//        Profile profile = Profile.getCurrentProfile();
-//        nextActivity(profile);
-    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//    }
-//
-    protected void onStop() {
-        super.onStop();
-        //accessTokenTracker.stopTracking();
-        profileTracker.stopTracking();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
-        super.onActivityResult(requestCode, responseCode, intent);
-        callbackManager.onActivityResult(requestCode, responseCode, intent);
-    }
-
-    private void nextActivity() {
-        if(mProfile != null) {
-            mKey = mReference.child("lobby_users").push().getKey();
-                    Player toAdd = new Player(mProfile.getId(), mProfile.getFirstName(), mProfile.getLastName(), mKey);
-                    toAdd.setMatched("false");
-                    mReference.child("users").child(mProfile.getId()).setValue(toAdd);
-                    mReference.child("lobby_users").child(mKey).setValue(toAdd);
-            Intent main = new Intent(LoginGUI.this, LobbyActivity.class);
-            main.putExtra("name", mProfile.getFirstName());
-            main.putExtra("surname", mProfile.getLastName());
-            main.putExtra("id", mProfile.getId());
-            main.putExtra("key", mProfile.getId());
-            startActivity(main);
-        }
-    }
-
-    public void logout() {
-        LoginManager.getInstance().logOut();
-        AccessToken.setCurrentAccessToken(null);
-    }
 }
 

@@ -9,34 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="csci201.han.edward.fi.draw.LoginGUI">
 
-
-    <!--<com.facebook.login.widget.LoginButton-->
-        <!--android:id="@+id/login_button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_below="@+id/dragonImg"-->
-        <!--android:layout_centerHorizontal="true" />-->
-
-
-    <!--<com.facebook.login.widget.LoginButton-->
-        <!--android:id="@+id/login_button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_marginBottom="30dp" />-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Draw.fi"
         android:textSize="80dp"
         android:textColor="@color/black"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
         android:fontFamily="varela round"
-        android:id="@+id/appNameId"/>
+        android:id="@+id/appNameId"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
     <ImageView
         android:layout_width="200dp"
         android:layout_height="375dp"
@@ -47,18 +29,41 @@
         android:layout_alignTop="@+id/appNameId"
         android:layout_centerHorizontal="true"/>
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
+
+    <EditText
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_alignBottom="@+id/dragonImg"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/editText"
+        android:layout_below="@+id/dragonImg"
+        android:layout_marginTop="-55dp"
+        android:layout_centerHorizontal="true"
+        android:text=""/>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/editText"
+        android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
+        android:text=""/>
+
+
+    <Button
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:id="@+id/login_button"
+        android:text="Login"
+        android:textColor="@color/white"/>
+    <Button
+        android:layout_width="165dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:layout_toRightOf="@+id/login_button"
+        android:id="@+id/create_account_btn"
+        android:text="Create Account"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/sandbox_button"
@@ -72,64 +77,8 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="2dp"
         android:textColor="#FFFFFF"
-        android:layout_below="@+id/login_button"
-        android:layout_alignStart="@+id/login_button"
-        android:layout_marginTop="42dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
-    <!--<EditText-->
-        <!--android:layout_width="315dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:shadowRadius="2"-->
-        <!--android:shadowColor="@color/black"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@+id/dragonImg"-->
-        <!--android:background="@drawable/edittextfield"-->
-        <!--android:id="@+id/username"-->
-        <!--android:layout_marginTop="-40dp"/>-->
-    <!--<EditText-->
-        <!--android:layout_width="315dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:shadowRadius="2"-->
-        <!--android:shadowColor="@color/black"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@+id/username"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:background="@drawable/edittextfield"-->
-        <!--android:id="@+id/password"/>-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@+id/password"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:id="@+id/relativeLayout">-->
-        <!--<Button-->
-            <!--android:layout_width="165dp"-->
-            <!--android:layout_height="110dp"-->
-            <!--android:text="Login"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:shadowRadius="25"-->
-            <!--android:shadowColor="@color/white"-->
-            <!--android:fontFamily="varela round"-->
-            <!--android:background="@drawable/mybutton"-->
-            <!--android:layout_marginRight="30dp"-->
-            <!--android:id="@+id/loginBtn"/>-->
-        <!--<Button-->
-            <!--android:layout_width="165dp"-->
-            <!--android:layout_height="110dp"-->
-            <!--android:text="Sandbox"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:shadowRadius="25"-->
-            <!--android:shadowColor="@color/white"-->
-            <!--android:fontFamily="varela round"-->
-            <!--android:background="@drawable/mybutton"-->
-            <!--android:layout_toRightOf="@+id/loginBtn"-->
-            <!--android:id="@+id/sandboxBtn"/>-->
-    <!--</RelativeLayout>-->
 
 </RelativeLayout>
