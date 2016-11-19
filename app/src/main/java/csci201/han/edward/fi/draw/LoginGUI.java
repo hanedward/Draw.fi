@@ -1,6 +1,7 @@
 package csci201.han.edward.fi.draw;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
@@ -120,6 +121,11 @@ public class LoginGUI extends FragmentActivity{
                                 Toast.makeText(getApplicationContext(), "This username already exists", Toast.LENGTH_LONG).show();
                             }
                         }
+
+                        if(username.equals("") || password.equals("")) {
+                            exists = true;
+                            Toast.makeText(getApplicationContext(), "Invalid account information", Toast.LENGTH_LONG).show();
+                        }
                         if(!exists) {
                             Player p = new Player(username, username, password, username);
                             mReference.child("users").child(username).setValue(p);
@@ -138,6 +144,15 @@ public class LoginGUI extends FragmentActivity{
 
                     }
                 });
+            }
+        });
+
+
+        sandboxButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sandboxIntent = new Intent(LoginGUI.this, SandboxCanvas.class);
+                startActivity(sandboxIntent);
             }
         });
     }

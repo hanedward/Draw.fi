@@ -54,6 +54,7 @@
         android:layout_below="@+id/editText2"
         android:id="@+id/login_button"
         android:text="Login"
+        android:background="@color/colorBlue"
         android:textColor="@color/white"/>
     <Button
         android:layout_width="165dp"
@@ -62,22 +63,25 @@
         android:layout_below="@+id/editText2"
         android:layout_toRightOf="@+id/login_button"
         android:id="@+id/create_account_btn"
-        android:text="Create Account"
+        android:text="New Account"
+        android:background="@color/colorBlue"
         android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/sandbox_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_vertical"
         android:text="Sandbox"
         android:gravity="center"
-        android:paddingTop="17dp"
-        android:paddingBottom="17dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="2dp"
         android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true"
+        android:background="@color/colorBlue"
+        android:layout_below="@id/create_account_btn"
         android:layout_alignParentStart="true" />
 
 
