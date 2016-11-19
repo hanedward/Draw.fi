@@ -97,6 +97,9 @@ public class LobbyActivity extends AppCompatActivity {
 
         welcomePrompt.setText("Welcome " + name + " " + surname);
 
+        Player toAdd = new Player(id, name, surname, key);
+        //mReference.child("lobby_users").child("");
+
         mReference.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -206,7 +209,7 @@ public class LobbyActivity extends AppCompatActivity {
         });
 
         createTimer();
-        createTimer();
+        //createTimer();
 
 
 

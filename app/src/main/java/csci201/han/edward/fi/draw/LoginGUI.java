@@ -217,6 +217,11 @@ public class LoginGUI extends FragmentActivity{
 
     private void nextActivity() {
         if(mProfile != null) {
+            mKey = mReference.child("lobby_users").push().getKey();
+                    Player toAdd = new Player(mProfile.getId(), mProfile.getFirstName(), mProfile.getLastName(), mKey);
+                    toAdd.setMatched("false");
+                    mReference.child("users").child(mProfile.getId()).setValue(toAdd);
+                    mReference.child("lobby_users").child(mKey).setValue(toAdd);
             Intent main = new Intent(LoginGUI.this, LobbyActivity.class);
             main.putExtra("name", mProfile.getFirstName());
             main.putExtra("surname", mProfile.getLastName());
