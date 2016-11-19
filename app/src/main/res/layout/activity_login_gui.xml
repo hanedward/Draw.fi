@@ -31,17 +31,20 @@
 
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_below="@+id/dragonImg"
         android:layout_marginTop="-55dp"
+        android:hint="Enter Username"
         android:layout_centerHorizontal="true"
         android:text=""/>
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
+        android:inputType="textPassword"
+        android:hint="Enter Password"
         android:layout_below="@+id/editText"
         android:layout_marginBottom="15dp"
         android:layout_centerHorizontal="true"

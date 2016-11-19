@@ -76,13 +76,13 @@ public class LoginGUI extends FragmentActivity{
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean exists = false;
                         for(DataSnapshot c : dataSnapshot.getChildren()) {
-                            System.out.println(c.getKey());
                             if(c.getKey().equals(username)) {
-                                System.out.println("check password: " + c.child("lastName").getValue());
                                 if(c.child("lastName").getValue().equals(password)) {
                                     exists = true;
                                     Player p = new Player(username, username, password, username);
                                     mReference.child("lobby_users").child(username).setValue(p);
+                                    mReference.child("users").child(username).child("match").setValue("false");
+                                    mReference.child("users").child(username).child("opponentKey").setValue("none");
                                     Intent lobby = new Intent(LoginGUI.this, LobbyActivity.class);
                                     lobby.putExtra("name", username);
                                     lobby.putExtra("surname", password);
