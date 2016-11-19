@@ -81,6 +81,7 @@ public class LoginGUI extends FragmentActivity{
                                     exists = true;
                                     Player p = new Player(username, username, password, username);
                                     mReference.child("lobby_users").child(username).setValue(p);
+                                    p.setMatched("false");
                                     mReference.child("users").child(username).child("match").setValue("false");
                                     mReference.child("users").child(username).child("opponentKey").setValue("none");
                                     Intent lobby = new Intent(LoginGUI.this, LobbyActivity.class);

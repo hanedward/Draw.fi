@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -68,13 +69,10 @@ public class LobbyActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         myToolbar.setBackgroundColor(Color.parseColor("#FF3b5998"));
 
-
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
         avi.show();
 
         counter = 0;
-
-
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
 
@@ -88,12 +86,13 @@ public class LobbyActivity extends AppCompatActivity {
         settingView = v.inflate(R.layout.setting_game_layout, null);
 
         Bundle inBundle = getIntent().getExtras();
-        name = inBundle.get("name").toString();
-        surname = inBundle.get("surname").toString();
-        id = inBundle.get("id").toString();
+        name = (String)inBundle.get("name");
+        surname = (String)inBundle.get("surname");
+        id = (String)inBundle.get("id");
         mKey = inBundle.getString("key");
 
-        welcomePrompt.setText("Welcome " + name + " " + surname);
+        String prompt = "Welcome " + name;
+        welcomePrompt.setText(prompt);
 
         mReference.child("users").addValueEventListener(new ValueEventListener() {
             @Override
@@ -234,9 +233,7 @@ public class LobbyActivity extends AppCompatActivity {
         });
 
         if(!this.isFinishing()) {
-
             settingGameDialog.show();
-
 
             final Timer timer2 = new Timer();
             timer2.schedule(new TimerTask() {
@@ -299,7 +296,11 @@ public class LobbyActivity extends AppCompatActivity {
                                 searchingPrompt.setText("Searing for an opponent...");
                                 Player addPlayer = new Player(id, name, surname, mKey);
                                 mReference.child("lobby_users").child(mKey).setValue(addPlayer);
-                                createTimer();
+                                Intent i = getIntent();
+                                finish();
+                                overridePendingTransition( 0, 0);
+                                startActivity(i);
+                                overridePendingTransition( 0, 0);
                             }
                         });
                         noButton.setVisibility(View.VISIBLE);
