@@ -118,7 +118,7 @@ public class GameCanvas extends AppCompatActivity {
         timerTextView = (TextView) findViewById(R.id.timerLabel);
         keyword = (TextView) findViewById(R.id.keywordLabel);
 
-        mReference.child("users").child(playerMe).child("isSecond").addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.child("users").child(playerMe).child("second").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue().equals(true)) {
@@ -132,6 +132,7 @@ public class GameCanvas extends AppCompatActivity {
 
             }
         });
+
 
         mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
