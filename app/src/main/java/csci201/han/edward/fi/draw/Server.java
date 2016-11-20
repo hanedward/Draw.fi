@@ -21,12 +21,21 @@ public class Server extends Thread {
 
     public void run() {
         ServerSocket ss = null;
-        while(true) {
+        try {
+            ss = new ServerSocket(port);
+        } catch (IOException ioe){
             try {
-                ss = new ServerSocket(port);
+                ss.close();
+            } catch(IOException ie) {
+                ie.printStackTrace();
+            }
+        }
+        while(counter < 2) {
+            try {
                 Socket s = ss.accept();
                 ServerThread st = new ServerThread(s, this);
                 serverThreads.add(st);
+                counter++;
             } catch (IOException ioe) {
                 System.out.println(ioe.getMessage());
             } finally {
