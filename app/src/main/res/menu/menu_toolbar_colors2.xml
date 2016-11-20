@@ -11,28 +11,28 @@
         android:id="@+id/menu_BLACK"
         android:title="@string/blackStr"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_edit" />
+        android:icon="@drawable/circle_icon" />
     <item
         android:id="@+id/menu_BROWN"
         android:title="@string/brownStr"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/circle_icon"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_DARKGREEN"
         android:title="@string/purpleStr"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_edit" />
+        android:icon="@drawable/circle_icon" />
     <item
         android:id="@+id/menu_PURPLE"
         android:title="@string/purpleStr"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_edit" />
+        android:icon="@drawable/circle_icon" />
     <item
         android:id="@+id/menu_MAGENTA"
         android:title="@string/magentaStr"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_edit" />
+        android:icon="@drawable/circle_icon" />
 
 
 </menu>

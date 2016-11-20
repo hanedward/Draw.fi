@@ -125,6 +125,7 @@ public class LobbyActivity extends AppCompatActivity {
                 }
 
                 if(isSecondUser) {
+                    System.out.println("I AM THE SECOND USER");
                     int counter = 0;
                     for(DataSnapshot c : dataSnapshot.getChildren()) {
                         if(counter == 0) {
@@ -142,6 +143,7 @@ public class LobbyActivity extends AppCompatActivity {
                         }
                         counter++;
                     }
+                    System.out.println("Setting my opponent's match to true");
                     mReference.child("users").child(player1).child("match").setValue("true");
                     mReference.child("users").child(player2).child("match").setValue("true");
                     setKeyWord(player1, player2);

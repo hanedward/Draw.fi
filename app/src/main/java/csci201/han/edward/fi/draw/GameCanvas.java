@@ -248,11 +248,6 @@ public class GameCanvas extends AppCompatActivity {
                     case R.id.menu_BLUE:
                         canvas.changeColor(Color.BLUE);
                         break;
-                    case R.id.home:
-                        System.out.println("Clicked the back button");
-                        Intent login = new Intent(GameCanvas.this, LoginGUI.class);
-                        startActivity(login);
-                        break;
 
                 }
                 return false;

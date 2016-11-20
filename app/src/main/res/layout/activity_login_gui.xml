@@ -23,7 +23,7 @@
         android:layout_width="200dp"
         android:layout_height="375dp"
         android:id="@+id/dragonImg"
-        android:src="@drawable/dragon_test"
+        android:src="@drawable/small_dragon"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:layout_alignTop="@+id/appNameId"

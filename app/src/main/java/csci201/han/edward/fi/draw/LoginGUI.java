@@ -1,8 +1,11 @@
 package csci201.han.edward.fi.draw;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -44,6 +47,8 @@ public class LoginGUI extends FragmentActivity{
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
 
+    private ImageView dragonView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,8 @@ public class LoginGUI extends FragmentActivity{
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
+
+        dragonView = (ImageView) findViewById(R.id.dragonImg);
 
         addListeners();
 

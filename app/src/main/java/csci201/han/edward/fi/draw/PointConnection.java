@@ -13,14 +13,14 @@ public class PointConnection extends Point {
 
     private final Point neighbor;
 
-    public PointConnection(final float x, final float y, final int col, final Point neighbor, final int width) {
-        super(x, y, col, width);
+    public PointConnection(final float x, final float y, final int color, final Point neighbor, final int width) {
+        super(x, y, color, width);
         this.neighbor = neighbor;
     }
 
     @Override
     public void draw(final Canvas canvas, final Paint paint) {
-        paint.setColor(col);
+        paint.setColor(color);
         paint.setStrokeWidth(width);
         canvas.drawLine(x, y, neighbor.x, neighbor.y, paint);
         canvas.drawCircle(x, y, width/2, paint); //adds more vertices between curved line segments

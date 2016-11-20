@@ -11,23 +11,31 @@ a Point is the most basic thing that the user can put on the screen.
 
 public class Point {
     public float x, y;
-    public int col;
+    public int color;
     public int width;
 
     public Point(){
         //default constructor
     }
 
-    public Point(final float x, final float y, final int col, final int width) {
+    public Point(final float x, final float y, final int color, final int width) {
         this.x = x;
         this.y = y;
-        this.col = col;
+        this.color = color;
         this.width = width;
     }
 
     public void draw(final Canvas canvas, final Paint paint) {
-        paint.setColor(col);
+        paint.setColor(color);
         canvas.drawCircle(x, y, width/2, paint); //for handlings curves
+    }
+
+    public boolean isSamePoint(Point p){
+        //check x,y location
+        if(x == p.x && y == p.y)
+            return true;
+        //else
+        return false;
     }
 
 }
