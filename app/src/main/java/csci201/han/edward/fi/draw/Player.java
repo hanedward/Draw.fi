@@ -13,6 +13,7 @@ public class Player implements Serializable{
     private String matched;
     private Boolean isSecond;
     private int totalScore;
+    private String ipAddress;
     String key;
 
     public Player(String id, String fName, String lName, String key){
@@ -25,8 +26,7 @@ public class Player implements Serializable{
         matched = "false";
         isSecond = false;
         totalScore = 0;
-
-
+        ipAddress = "";
     }
 
     public String getUid(){
@@ -95,5 +95,13 @@ public class Player implements Serializable{
 
     public int getScore() {
         return totalScore;
+    }
+
+    public void setAddress(String a) {
+        ipAddress = a;
+    }
+
+    public String getAddress() {
+        return ipAddress;
     }
 }

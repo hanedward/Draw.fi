@@ -64,6 +64,8 @@ public class GameCanvas extends AppCompatActivity {
     long startTime = 0;
     int counter = 0;
 
+    public String ipAddress;
+
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -135,19 +137,33 @@ public class GameCanvas extends AppCompatActivity {
         timerTextView = (TextView) findViewById(R.id.timerLabel);
         keyword = (TextView) findViewById(R.id.keywordLabel);
 
+
+        mReference.child("users").child(playerMe).child("ipAddress").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ipAddress = (String)dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         mReference.child("users").child(playerMe).child("second").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue().equals(true)) {
                     server = new Server(GameCanvas.this);
                     Log.d(TAG, "I am the server");
-                    client = new Client("localhost", 8080);
+                    client = new Client(ipAddress, 8080);
                     client.start();
                     try {
                         client.sleep(1000);
                     } catch (InterruptedException ie) {}
                 } else {
-                    client = new Client("localhost", 8080);
+                    client = new Client(ipAddress, 8080);
                     Log.d(TAG, "I am the client");
                     client.start();
                     try {

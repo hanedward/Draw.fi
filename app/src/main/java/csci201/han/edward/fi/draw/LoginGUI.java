@@ -6,9 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.wifi.WifiManager;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,6 +92,11 @@ public class LoginGUI extends FragmentActivity{
                                     mReference.child("lobby_users").child(username).setValue(p);
                                     p.setMatched("false");
                                     p.setSecond(false);
+
+
+                                    WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+                                    String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+                                    p.setAddress(ip);
                                     mReference.child("users").child(username).child("match").setValue("false");
                                     mReference.child("users").child(username).child("opponentKey").setValue("none");
                                     Intent lobby = new Intent(LoginGUI.this, LobbyActivity.class);

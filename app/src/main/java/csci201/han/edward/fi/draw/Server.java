@@ -28,11 +28,11 @@ public class Server extends Thread {
         try {
             ss = new ServerSocket(port);
         } catch (IOException ioe){
-            try {
-                ss.close();
-            } catch(IOException ie) {
-                ie.printStackTrace();
-            }
+//            try {
+//                ss.close();
+//            } catch(IOException ie) {
+//                ie.printStackTrace();
+//            }
         }
         while(counter < 2) {
             try {
@@ -44,9 +44,9 @@ public class Server extends Thread {
             } catch (IOException ioe) {
                 System.out.println(ioe.getMessage());
             } finally {
-                try {
-                    if (ss != null) ss.close();
-                } catch (IOException ioe) {}
+//                try {
+//                    if (ss != null) ss.close();
+//                } catch (IOException ioe) {}
             }
         }
     }
@@ -60,9 +60,10 @@ public class Server extends Thread {
 
     public void checkToSendMessage() {
         if(counter == 2) {
-            for(ServerThread st : serverThreads) {
-                st.sendMessage((byte)2);
-            }
+            sendDataToAllClients((byte)2);
+//            for(ServerThread st : serverThreads) {
+//                st.sendMessage((byte)2);
+//            }
         }
     }
 }
