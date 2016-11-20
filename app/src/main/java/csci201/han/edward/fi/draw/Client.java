@@ -3,18 +3,12 @@ package csci201.han.edward.fi.draw;
 /**
  * Created by rager7 on 11/19/2016.
  */
-        import java.io.BufferedReader;
-        import java.io.ByteArrayOutputStream;
         import java.io.IOException;
         import java.io.InputStream;
-        import java.io.InputStreamReader;
         import java.io.OutputStream;
         import java.net.Socket;
         import java.net.UnknownHostException;
 
-        import android.content.Context;
-        import android.os.AsyncTask;
-        import android.provider.Telephony;
         import android.util.Log;
         import android.widget.TextView;
 
@@ -28,6 +22,7 @@ public class Client extends Thread {
     InputStream is;
     private Socket socket;
     boolean readyToSwitch;
+    public static final String TAG = "xyz";
 
     public Client(String addr, int port) {
         dstAddress = addr;
@@ -39,6 +34,7 @@ public class Client extends Thread {
 
     public void sendToServer(byte b) {
         try {
+            Log.d(TAG, "I am writing this to the server: " + b);
             os.write(b);
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
@@ -49,13 +45,9 @@ public class Client extends Thread {
 
         try {
             socket = new Socket(dstAddress, dstPort);
-
-
             os = socket.getOutputStream();
             is = socket.getInputStream();
 
-
-            this.start();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -63,11 +55,14 @@ public class Client extends Thread {
         }
 
         while(true) {
-            //String message  = (String) getStringFromInputStream(is); //online code -- careful
             try {
-                String message = String.valueOf(is.read());
+                byte b = (byte)is.read();
+                if(b == 2) {
+                    Log.d(TAG, "Server said I am ready to switch");
+                    readyToSwitch = true;
+                }
             } catch (IOException ioe) { }
-            readyToSwitch = true;
+
         }
 
     }
@@ -77,34 +72,34 @@ public class Client extends Thread {
     }
 
 
-    private static String getStringFromInputStream(InputStream is) {
-
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return sb.toString();
-
-    }
+//    private static String getStringFromInputStream(InputStream is) {
+//
+//        BufferedReader br = null;
+//        StringBuilder sb = new StringBuilder();
+//
+//        String line;
+//        try {
+//
+//            br = new BufferedReader(new InputStreamReader(is));
+//            while ((line = br.readLine()) != null) {
+//                sb.append(line);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (br != null) {
+//                try {
+//                    br.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        return sb.toString();
+//
+//    }
 
 }
 

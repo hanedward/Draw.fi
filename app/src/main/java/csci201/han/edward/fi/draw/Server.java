@@ -1,5 +1,7 @@
 package csci201.han.edward.fi.draw;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,12 +12,14 @@ public class Server extends Thread {
     private int port;
     GameCanvas gc;
     int counter;
+    public static final String TAG = "xyz";
 
     public Server(GameCanvas gc) {
         port = 8080;
         this.gc = gc;
         this.start();
         counter = 0;
+        serverThreads = new Vector<>();
     }
 
 
@@ -35,6 +39,7 @@ public class Server extends Thread {
                 Socket s = ss.accept();
                 ServerThread st = new ServerThread(s, this);
                 serverThreads.add(st);
+                Log.d(TAG, "adding a connection to our Server");
                 counter++;
             } catch (IOException ioe) {
                 System.out.println(ioe.getMessage());

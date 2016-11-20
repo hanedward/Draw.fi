@@ -96,6 +96,7 @@ public class GameCanvas extends AppCompatActivity {
             timerHandler.postDelayed(this, 500);
             if(client != null)
                 if(client.getReady()) {
+                    Log.d(TAG, "Now I am calling the nextActivity() function");
                     nextActivity();
                 }
         }
@@ -139,24 +140,19 @@ public class GameCanvas extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue().equals(true)) {
                     server = new Server(GameCanvas.this);
+                    Log.d(TAG, "I am the server");
                     client = new Client("localhost", 8080);
                     client.start();
                     try {
                         client.sleep(1000);
                     } catch (InterruptedException ie) {}
-                    if(client != null){
-                        Log.d(TAG, "My client got created");
-                    }
                 } else {
                     client = new Client("localhost", 8080);
+                    Log.d(TAG, "I am the client");
                     client.start();
                     try {
                         client.sleep(1000);
                     } catch (InterruptedException ie) {}
-                    Log.d(TAG, "I am not the host");
-                    if(client != null){
-                        Log.d(TAG, "My client got created");
-                    }
                 }
             }
 
@@ -323,7 +319,7 @@ public class GameCanvas extends AppCompatActivity {
     }
 
     public void nextActivity() {
-        Log.d(TAG, "We are ready to move to the next activity");
+        Log.d(TAG, "We are inside the nextActivity() function");
 
         mReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
