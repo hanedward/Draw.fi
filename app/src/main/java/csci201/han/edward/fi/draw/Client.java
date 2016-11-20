@@ -34,10 +34,25 @@ public class Client extends Thread {
         readyToSwitch = false;
 
 
+    }
+
+    public void sendToServer(String b) {
+        try {
+            os.write(b.equals("true") ? (byte)1 : (byte)0);
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+    }
+
+    public void run() {
+
         try {
             socket = new Socket(dstAddress, dstPort);
+
+
             os = socket.getOutputStream();
             is = socket.getInputStream();
+
 
             this.start();
         } catch (UnknownHostException e) {
@@ -46,20 +61,11 @@ public class Client extends Thread {
             e.printStackTrace();
         }
 
-    }
-
-    public void sendToServer(String b) {
-        try {
-            os.write(Byte.valueOf(b));
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
-        }
-    }
-
-    public void run() {
-
         while(true) {
-            String message  = (String) getStringFromInputStream(is); //online code -- careful
+            //String message  = (String) getStringFromInputStream(is); //online code -- careful
+            try {
+                String message = String.valueOf(is.read());
+            } catch (IOException ioe) { }
             readyToSwitch = true;
         }
 
