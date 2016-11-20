@@ -103,8 +103,9 @@ public class LobbyActivity extends AppCompatActivity {
                     for(DataSnapshot c : dataSnapshot.getChildren()) {
                         if(c.getKey().equals(id)) {
                             if(c.child("match").getValue().equals("true")) {
-                                String opponentKey = c.child("opponentKey").toString();
+                                String opponentKey = (String)c.child("opponentKey").getValue();
                                 player2 = id;
+                                player1 = opponentKey;
                                 nextActivity(opponentKey);
                             }
                         }

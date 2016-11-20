@@ -11,6 +11,7 @@ import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,6 +98,7 @@ public class LoginGUI extends FragmentActivity{
                                     WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                                     String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
                                     p.setAddress(ip);
+                                    mReference.child("users").child(username).child("address").setValue(ip);
                                     mReference.child("users").child(username).child("match").setValue("false");
                                     mReference.child("users").child(username).child("opponentKey").setValue("none");
                                     Intent lobby = new Intent(LoginGUI.this, LobbyActivity.class);

@@ -65,6 +65,7 @@ public class GameCanvas extends AppCompatActivity {
     int counter = 0;
 
     public String ipAddress;
+    public String opponentAddress;
 
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
@@ -138,11 +139,24 @@ public class GameCanvas extends AppCompatActivity {
         keyword = (TextView) findViewById(R.id.keywordLabel);
 
 
-        mReference.child("users").child(playerMe).child("ipAddress").addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.child("users").child(playerMe).child("address").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, ipAddress);
                 ipAddress = (String)dataSnapshot.getValue();
+//                Log.d(TAG, ipAddress);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mReference.child("users").child(playerOpponent).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                opponentAddress = (String) dataSnapshot.child("address").getValue();
+                Log.d(TAG, opponentAddress);
             }
 
             @Override
@@ -164,9 +178,13 @@ public class GameCanvas extends AppCompatActivity {
                         client.sleep(1000);
                     } catch (InterruptedException ie) {}
                 } else {
-                    client = new Client(ipAddress, 8080);
-                    Log.d(TAG, "I am the client");
+
+//                    while(opponentAddress == null) Log.d(TAG, "waiting for opponent key to be set");
+                    if (opponentAddress == null) Log.d(TAG, "waiting for opponent key to be set");
+                    client = new Client(opponentAddress, 8080);
+                    Log.d(TAG, "I am the client connecting to: " + opponentAddress);
                     client.start();
+
                     try {
                         client.sleep(1000);
                     } catch (InterruptedException ie) {}
@@ -343,10 +361,10 @@ public class GameCanvas extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 PointGenerator pointGenerator = new PointGenerator();
 
-                int score = Integer.valueOf((String)dataSnapshot.child(playerMe).child("totalScore").getValue());
+                int score = Integer.valueOf((String)dataSnapshot.child(playerMe).child("score").getValue());
                 score += pointGenerator.getPoint();
 
-                mReference.child("users").child(playerMe).child("totalScore").setValue(score);
+                mReference.child("users").child(playerMe).child("score").setValue(score);
             }
 
             @Override

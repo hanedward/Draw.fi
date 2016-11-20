@@ -44,10 +44,11 @@ public class Client extends Thread {
     public void run() {
 
         try {
+            Log.d(TAG, "setting up sockets: "+dstAddress);
             socket = new Socket(dstAddress, dstPort);
             os = socket.getOutputStream();
             is = socket.getInputStream();
-
+            Log.d(TAG, "sockets intitialized");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
