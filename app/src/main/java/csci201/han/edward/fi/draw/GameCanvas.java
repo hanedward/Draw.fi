@@ -141,6 +141,7 @@ public class GameCanvas extends AppCompatActivity {
         mReference.child("users").child(playerMe).child("ipAddress").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, ipAddress);
                 ipAddress = (String)dataSnapshot.getValue();
             }
 
