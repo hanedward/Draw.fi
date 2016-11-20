@@ -93,10 +93,10 @@ public class GameCanvas extends AppCompatActivity {
                 counter++;
             }
             timerHandler.postDelayed(this, 500);
-
-            if(client.getReady()) {
-                nextActivity();
-            }
+            if(client != null)
+                if(client.getReady()) {
+                    nextActivity();
+                }
         }
     };
 
@@ -139,12 +139,14 @@ public class GameCanvas extends AppCompatActivity {
                 if(dataSnapshot.getValue().equals(true)) {
                     server = new Server(GameCanvas.this);
                     client = new Client("localhost", 8080);
+                    client.start();
                     //Log.d(TAG, "SERVER IP ADDRESS: " + server.getIpAddress().toString());
                     if(client != null){
                         Log.d(TAG, "My client got created");
                     }
                 } else {
                     client = new Client("localhost", 8080);
+                    client.start();
                     Log.d(TAG, "I am not the host");
                     if(client != null){
                         Log.d(TAG, "My client got created");
