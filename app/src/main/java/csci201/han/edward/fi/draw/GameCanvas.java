@@ -20,6 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+
 //MAIN ACTIVITY FOR THE CANVAS
 /**
  * The only files you need to run the barebones canvas:
@@ -37,6 +41,7 @@ public class GameCanvas extends AppCompatActivity {
 
     Server server;
     Client client;
+    OutputStream outputStream;
     public static final String TAG = "xyz";
 
     private DrawView canvas;
@@ -65,7 +70,6 @@ public class GameCanvas extends AppCompatActivity {
         @Override
         public void run() {
             System.out.println("entered");
-
             long millis = System.currentTimeMillis() - startTime;
             System.out.println(millis);
             int seconds = (int) (millis / 1000);
@@ -79,6 +83,10 @@ public class GameCanvas extends AppCompatActivity {
 
             if (seconds <= 0) {
                 timerTextView.setText("Time is up!");
+                if(server == null)
+                    client.sendToServer("true1");
+                else
+                    client.sendToServer("true0");
 
                 //send boolean to the server that I am done
             }
@@ -127,10 +135,16 @@ public class GameCanvas extends AppCompatActivity {
                 if(dataSnapshot.getValue().equals(true)) {
                     server = new Server(GameCanvas.this);
                     client = new Client("localhost", 8080);
-                    Log.d(TAG, "SERVER IP ADDRESS: " + server.getIpAddress().toString());
+                    //Log.d(TAG, "SERVER IP ADDRESS: " + server.getIpAddress().toString());
+                    if(client != null){
+                        Log.d(TAG, "My client got created");
+                    }
                 } else {
                     client = new Client("localhost", 8080);
                     Log.d(TAG, "I am not the host");
+                    if(client != null){
+                        Log.d(TAG, "My client got created");
+                    }
                 }
             }
 
@@ -139,10 +153,6 @@ public class GameCanvas extends AppCompatActivity {
 
             }
         });
-
-        if(client != null){
-            Log.d(TAG, "My client got created");
-        }
 
         mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -298,6 +308,12 @@ public class GameCanvas extends AppCompatActivity {
             default: break;
         }
         return true;
+    }
+
+    public void nextActivity() {
+        Log.d(TAG, "We are ready to move to the next activity");
+//        Intent final = new Intent(GameCanvas.this, ViewImages.class);
+//        startActivity(final);
     }
 
 }
