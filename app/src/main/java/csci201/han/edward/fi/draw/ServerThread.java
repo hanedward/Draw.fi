@@ -15,14 +15,13 @@ public class ServerThread extends Thread{
     private Server server;
     private OutputStream os;
     private InputStream is;
-    private boolean firstReady;
-    private boolean secondReady;
+    private boolean isReady;
 
     public ServerThread(Socket s, Server server) {
         this.server = server;
         this.s = s;
-        firstReady = false;
-        secondReady = false;
+        isReady = false;
+
 
         try {
             os = s.getOutputStream();
@@ -34,15 +33,11 @@ public class ServerThread extends Thread{
     }
 
     public void run() {
-        try {
-            while(true) {
-                String message = (String) getStringFromInputStream(is);
-                if(message.equals("true1")) {
+        while(true) {
+            String message = (String) getStringFromInputStream(is);
+            server.counter++;
+            server.checkToSendMessage();
 
-                }
-            }
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
         }
     }
 
@@ -73,6 +68,15 @@ public class ServerThread extends Thread{
 
         return sb.toString();
 
+    }
+
+    public void sendMessage(String s) {
+        byte[] b = s.getBytes();
+        try {
+            os.write(b);
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
     }
 
 }

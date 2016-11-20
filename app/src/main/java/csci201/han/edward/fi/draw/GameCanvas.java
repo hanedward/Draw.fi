@@ -62,6 +62,7 @@ public class GameCanvas extends AppCompatActivity {
     String playerMe;
 
     long startTime = 0;
+    int counter = 0;
 
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
@@ -83,16 +84,19 @@ public class GameCanvas extends AppCompatActivity {
 
             if (seconds <= 0) {
                 timerTextView.setText("Time is up!");
-                if(server == null)
-                    client.sendToServer("true1");
-                else
-                    client.sendToServer("true0");
-
-                //send boolean to the server that I am done
+                if(counter == 0) {
+                    if(server == null)
+                        client.sendToServer("true");
+                    else
+                        client.sendToServer("true");
+                }
+                counter++;
             }
-
             timerHandler.postDelayed(this, 500);
 
+            if(client.getReady()) {
+                nextActivity();
+            }
         }
     };
 
