@@ -123,7 +123,7 @@ public class LobbyActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int numChildren = (int)dataSnapshot.getChildrenCount();
                 if(numChildren != 0 && numChildren != 1) {
-                    mReference.child("users").child(name).child("isSecond").setValue(true);
+                    mReference.child("users").child(name).child("second").setValue(true);
                     isSecondUser = true;
                 }
 
@@ -221,19 +221,6 @@ public class LobbyActivity extends AppCompatActivity {
         settingGameDialog = new Dialog(this);
         settingGameDialog.setContentView(R.layout.setting_game_layout);
         settingGameDialog.setCancelable(false);
-
-        mReference.child("users").child(oppKey).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //opponentName = dataSnapshot.child("firstName").getValue().toString();
-                opponentName = "Dummy Name";
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         if(!this.isFinishing()) {
             settingGameDialog.show();

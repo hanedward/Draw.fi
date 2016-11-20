@@ -18,10 +18,9 @@ public class Client extends AsyncTask<Void, Void, Void> {
     String response = "";
     TextView textResponse;
 
-    Client(String addr, int port, TextView textResponse) {
+    Client(String addr, int port) {
         dstAddress = addr;
         dstPort = port;
-        this.textResponse = textResponse;
     }
 
     @Override

@@ -88,4 +88,12 @@ public class Player implements Serializable{
     public boolean getSecond() {
         return isSecond;
     }
+
+    public void setScore(int s) {
+        totalScore = s;
+    }
+
+    public int getScore() {
+        return totalScore;
+    }
 }

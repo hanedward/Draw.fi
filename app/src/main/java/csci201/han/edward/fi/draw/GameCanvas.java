@@ -36,7 +36,8 @@ public class GameCanvas extends AppCompatActivity {
 
 
     Server server;
-    public static final String TAG = "find me";
+    Client client;
+    public static final String TAG = "xyz";
 
     private DrawView canvas;
     private Toolbar mToolbar;
@@ -78,6 +79,8 @@ public class GameCanvas extends AppCompatActivity {
 
             if (seconds <= 0) {
                 timerTextView.setText("Time is up!");
+
+                //send boolean to the server that I am done
             }
 
             timerHandler.postDelayed(this, 500);
@@ -123,7 +126,11 @@ public class GameCanvas extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue().equals(true)) {
                     server = new Server(GameCanvas.this);
+                    client = new Client("localhost", 8080);
                     Log.d(TAG, "SERVER IP ADDRESS: " + server.getIpAddress().toString());
+                } else {
+                    client = new Client("localhost", 8080);
+                    Log.d(TAG, "I am not the host");
                 }
             }
 
@@ -133,6 +140,9 @@ public class GameCanvas extends AppCompatActivity {
             }
         });
 
+        if(client != null){
+            Log.d(TAG, "My client got created");
+        }
 
         mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -280,6 +290,7 @@ public class GameCanvas extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mReference.child("users").child(playerMe).child("match").setValue("false");
+                mReference.child("users").child(playerMe).child("second").setValue(false);
                 Intent login = new Intent(GameCanvas.this, LoginGUI.class);
                 finish();
                 startActivity(login);
