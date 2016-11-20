@@ -85,10 +85,11 @@ public class GameCanvas extends AppCompatActivity {
             if (seconds <= 0) {
                 timerTextView.setText("Time is up!");
                 if(counter == 0) {
-                    if(server == null)
-                        client.sendToServer("true");
-                    else
-                        client.sendToServer("true");
+                    client.sendToServer((byte)1);
+//                    if(server == null)
+//                        client.sendToServer(1);
+//                    else
+//                        client.sendToServer(1);
                 }
                 counter++;
             }
@@ -140,13 +141,18 @@ public class GameCanvas extends AppCompatActivity {
                     server = new Server(GameCanvas.this);
                     client = new Client("localhost", 8080);
                     client.start();
-                    //Log.d(TAG, "SERVER IP ADDRESS: " + server.getIpAddress().toString());
+                    try {
+                        client.sleep(1000);
+                    } catch (InterruptedException ie) {}
                     if(client != null){
                         Log.d(TAG, "My client got created");
                     }
                 } else {
                     client = new Client("localhost", 8080);
                     client.start();
+                    try {
+                        client.sleep(1000);
+                    } catch (InterruptedException ie) {}
                     Log.d(TAG, "I am not the host");
                     if(client != null){
                         Log.d(TAG, "My client got created");

@@ -1,10 +1,13 @@
 package csci201.han.edward.fi.draw;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
@@ -70,9 +73,11 @@ public class ServerThread extends Thread{
 
     }
 
-    public void sendMessage(String s) {
-        byte[] b = s.getBytes();
+    public void sendMessage(byte b) {
+//        byte[] b = s.getBytes();
         try {
+//            PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(this.s.getOutputStream())), true);
+//            out.print(s);
             os.write(b);
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());

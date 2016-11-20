@@ -15,6 +15,7 @@ package csci201.han.edward.fi.draw;
         import android.content.Context;
         import android.os.AsyncTask;
         import android.provider.Telephony;
+        import android.util.Log;
         import android.widget.TextView;
 
 public class Client extends Thread {
@@ -36,9 +37,9 @@ public class Client extends Thread {
 
     }
 
-    public void sendToServer(String b) {
+    public void sendToServer(byte b) {
         try {
-            os.write(b.equals("true") ? (byte)1 : (byte)0);
+            os.write(b);
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
@@ -75,36 +76,6 @@ public class Client extends Thread {
         return readyToSwitch;
     }
 
-//    @Override
-//    protected Void doInBackground(Void... arg0) {
-//
-//        Socket socket = null;
-//
-//        try {
-//            socket = new Socket(dstAddress, dstPort);
-//            os = socket.getOutputStream();
-//            is = socket.getInputStream();
-//        } catch (UnknownHostException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (socket != null) {
-//                try {
-//                    socket.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
-//    @Override
-//    protected void onPostExecute(Void result) {
-//        textResponse.setText(response);
-//        super.onPostExecute(result);
-//    }
 
     private static String getStringFromInputStream(InputStream is) {
 

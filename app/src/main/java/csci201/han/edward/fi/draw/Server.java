@@ -47,16 +47,16 @@ public class Server extends Thread {
     }
 
 
-    public void sendDataToAllClients(String s) {
+    public void sendDataToAllClients(byte b) {
         for(ServerThread st : serverThreads) {
-            st.sendMessage(s);
+            st.sendMessage(b);
         }
     }
 
     public void checkToSendMessage() {
         if(counter == 2) {
             for(ServerThread st : serverThreads) {
-                st.sendMessage("done");
+                st.sendMessage((byte)2);
             }
         }
     }
