@@ -11,6 +11,8 @@ public class Player implements Serializable{
     private String opponentKey;
     private String mKeyword;
     private String matched;
+    private Boolean isSecond;
+    private int totalScore;
     String key;
 
     public Player(String id, String fName, String lName, String key){
@@ -21,6 +23,9 @@ public class Player implements Serializable{
         mKeyword = "";
         opponentKey = "none";
         matched = "false";
+        isSecond = false;
+        totalScore = 0;
+
 
     }
 
@@ -74,5 +79,13 @@ public class Player implements Serializable{
 
     public String getMatch() {
         return matched;
+    }
+
+    public void setSecond(boolean s) {
+        isSecond = s;
+    }
+
+    public boolean getSecond() {
+        return isSecond;
     }
 }

@@ -44,7 +44,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".LobbyActivity" />
-        <activity android:name=".KeywordActivity"></activity>
         <activity android:name=".GameCanvas"></activity>
         <activity android:name=".SandboxCanvas"></activity>
     </application>

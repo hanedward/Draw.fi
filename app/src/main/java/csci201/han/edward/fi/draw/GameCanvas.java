@@ -258,7 +258,6 @@ public class GameCanvas extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                System.out.println("Clicked the back button");
                 mReference.child("users").child(playerMe).child("match").setValue("false");
                 Intent login = new Intent(GameCanvas.this, LoginGUI.class);
                 finish();

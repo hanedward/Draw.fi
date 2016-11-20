@@ -31,6 +31,9 @@ import java.util.TimerTask;
 
 public class LobbyActivity extends AppCompatActivity {
 
+    Server server;
+    TextView infoip, msg;
+
     public Button logoutButton;
     public TextView welcomePrompt;
     public TextView searchingPrompt;
@@ -60,6 +63,13 @@ public class LobbyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+
+
+        infoip = (TextView) findViewById(R.id.infoip);
+        msg = (TextView) findViewById(R.id.msg);
+        server = new Server(this);
+        infoip.setText(server.getIpAddress() + ":" + server.getPort());
+
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -121,11 +131,11 @@ public class LobbyActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int numChildren = (int)dataSnapshot.getChildrenCount();
                 if(numChildren != 0 && numChildren != 1) {
+                    mReference.child("users").child(name).child("isSecond").setValue(true);
                     isSecondUser = true;
                 }
 
                 if(isSecondUser) {
-                    System.out.println("I AM THE SECOND USER");
                     int counter = 0;
                     for(DataSnapshot c : dataSnapshot.getChildren()) {
                         if(counter == 0) {
@@ -143,7 +153,6 @@ public class LobbyActivity extends AppCompatActivity {
                         }
                         counter++;
                     }
-                    System.out.println("Setting my opponent's match to true");
                     mReference.child("users").child(player1).child("match").setValue("true");
                     mReference.child("users").child(player2).child("match").setValue("true");
                     setKeyWord(player1, player2);
@@ -282,7 +291,6 @@ public class LobbyActivity extends AppCompatActivity {
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-
                             }
                         });
 
