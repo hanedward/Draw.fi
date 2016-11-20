@@ -316,6 +316,23 @@ public class GameCanvas extends AppCompatActivity {
 
     public void nextActivity() {
         Log.d(TAG, "We are ready to move to the next activity");
+
+        mReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                PointGenerator pointGenerator = new PointGenerator();
+
+                int score = Integer.valueOf((String)dataSnapshot.child(playerMe).child("totalScore").getValue());
+                score += pointGenerator.getPoint();
+
+                mReference.child("users").child(playerMe).child("totalScore").setValue(score);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 //        Intent final = new Intent(GameCanvas.this, ViewImages.class);
 //        startActivity(final);
     }
