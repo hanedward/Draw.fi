@@ -15,6 +15,7 @@ package csci201.han.edward.fi.draw;
         import android.content.Context;
         import android.os.AsyncTask;
         import android.provider.Telephony;
+        import android.util.Log;
         import android.widget.TextView;
 
 public class Client extends Thread {
@@ -34,10 +35,25 @@ public class Client extends Thread {
         readyToSwitch = false;
 
 
+    }
+
+    public void sendToServer(byte b) {
+        try {
+            os.write(b);
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
+    }
+
+    public void run() {
+
         try {
             socket = new Socket(dstAddress, dstPort);
+
+
             os = socket.getOutputStream();
             is = socket.getInputStream();
+
 
             this.start();
         } catch (UnknownHostException e) {
@@ -46,20 +62,11 @@ public class Client extends Thread {
             e.printStackTrace();
         }
 
-    }
-
-    public void sendToServer(String b) {
-        try {
-            os.write(Byte.valueOf(b));
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
-        }
-    }
-
-    public void run() {
-
         while(true) {
-            String message  = (String) getStringFromInputStream(is); //online code -- careful
+            //String message  = (String) getStringFromInputStream(is); //online code -- careful
+            try {
+                String message = String.valueOf(is.read());
+            } catch (IOException ioe) { }
             readyToSwitch = true;
         }
 
@@ -69,36 +76,6 @@ public class Client extends Thread {
         return readyToSwitch;
     }
 
-//    @Override
-//    protected Void doInBackground(Void... arg0) {
-//
-//        Socket socket = null;
-//
-//        try {
-//            socket = new Socket(dstAddress, dstPort);
-//            os = socket.getOutputStream();
-//            is = socket.getInputStream();
-//        } catch (UnknownHostException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (socket != null) {
-//                try {
-//                    socket.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
-//    @Override
-//    protected void onPostExecute(Void result) {
-//        textResponse.setText(response);
-//        super.onPostExecute(result);
-//    }
 
     private static String getStringFromInputStream(InputStream is) {
 
