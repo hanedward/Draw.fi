@@ -9,6 +9,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +32,6 @@ import java.util.TimerTask;
 
 public class LobbyActivity extends AppCompatActivity {
 
-    Server server;
-    TextView infoip, msg;
 
     public Button logoutButton;
     public TextView welcomePrompt;
@@ -56,19 +55,12 @@ public class LobbyActivity extends AppCompatActivity {
     private int counter = 0;
     View settingView;
 
-
     private AVLoadingIndicatorView avi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
-
-
-        infoip = (TextView) findViewById(R.id.infoip);
-        msg = (TextView) findViewById(R.id.msg);
-        server = new Server(this);
-        infoip.setText(server.getIpAddress() + ":" + server.getPort());
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 

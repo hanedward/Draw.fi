@@ -15,12 +15,12 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 public class Server {
-    LobbyActivity activity;
+    GameCanvas activity;
     ServerSocket serverSocket;
     String message = "";
     static final int socketServerPORT = 8080;
 
-    public Server(LobbyActivity activity) {
+    public Server(GameCanvas activity) {
         this.activity = activity;
         Thread socketServerThread = new Thread(new SocketServerThread());
         socketServerThread.start();
@@ -63,7 +63,7 @@ public class Server {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            activity.msg.setText(message);
+
                         }
                     });
 
@@ -106,7 +106,7 @@ public class Server {
 
                     @Override
                     public void run() {
-                        activity.msg.setText(message);
+
                     }
                 });
 
@@ -120,7 +120,7 @@ public class Server {
 
                 @Override
                 public void run() {
-                    activity.msg.setText(message);
+
                 }
             });
         }

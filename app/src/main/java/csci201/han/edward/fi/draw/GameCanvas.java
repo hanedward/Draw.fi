@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -32,6 +33,10 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class GameCanvas extends AppCompatActivity {
+
+
+    Server server;
+    public static final String TAG = "find me";
 
     private DrawView canvas;
     private Toolbar mToolbar;
@@ -112,6 +117,21 @@ public class GameCanvas extends AppCompatActivity {
         playerMe = inBundle.get("player2").toString();
         timerTextView = (TextView) findViewById(R.id.timerLabel);
         keyword = (TextView) findViewById(R.id.keywordLabel);
+
+        mReference.child("users").child(playerMe).child("isSecond").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue().equals(true)) {
+                    server = new Server(GameCanvas.this);
+                    Log.d(TAG, "SERVER IP ADDRESS: " + server.getIpAddress().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mReference.child("users").child(playerMe).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
