@@ -23,4 +23,15 @@
     <string name="pinkStr">PINK</string>
 
 
+    <string name="yourScoreLabelStr">YOUR SCORE:</string>
+    <string name="yourScoreStr">201</string>
+    <string name="opponentScoreLabelStr">OPPONENT'S SCORE</string>
+    <string name="opponentScoreStr">101</string>
+    <string name="youWonStr">YOU WON!</string>
+    <string name="youLostStr">YOU LOST</string>
+    <string name="yourStashLabelStr">YOUR CURRENT STASH:</string>
+    <string name="yourStashStr">9786976</string>
+    <string name="gameOverStr">GAME OVER!</string>
+
+
 </resources>

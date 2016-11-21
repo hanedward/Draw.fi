@@ -6,7 +6,7 @@
         android:id="@+id/menu_ERASER"
         android:title="@string/eraserStr"
         app:showAsAction="always"
-        android:icon="@drawable/eraser" />
+        android:icon="@drawable/eraser_512" />
     <item
         android:id="@+id/menu_BLACK"
         android:title="@string/blackStr"
