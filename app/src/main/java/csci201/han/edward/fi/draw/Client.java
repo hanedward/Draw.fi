@@ -34,8 +34,11 @@ public class Client extends Thread {
 
     public void sendToServer(byte b) {
         try {
-            Log.d(TAG, "I am writing this to the server: " + b);
-            os.write(b);
+
+            if (os != null){
+                Log.d(TAG, "I am writing this to the server: " + b);
+                os.write(b);
+            }
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
@@ -44,10 +47,13 @@ public class Client extends Thread {
     public void run() {
 
         try {
-            Log.d(TAG, "setting up sockets: "+dstAddress);
+            Log.d(TAG, "setting up socket: "+dstAddress);
             socket = new Socket(dstAddress, dstPort);
+            Log.d(TAG, "socket setup");
             os = socket.getOutputStream();
+            Log.d(TAG, "output stream setup");
             is = socket.getInputStream();
+            Log.d(TAG, "input stream setup");
             Log.d(TAG, "sockets intitialized");
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -57,10 +63,12 @@ public class Client extends Thread {
 
         while(true) {
             try {
-                byte b = (byte)is.read();
-                if(b == 2) {
-                    Log.d(TAG, "Server said I am ready to switch");
-                    readyToSwitch = true;
+                if (is != null) {
+                    byte b = (byte) is.read();
+                    if (b == 2) {
+                        Log.d(TAG, "Server said I am ready to switch");
+                        readyToSwitch = true;
+                    }
                 }
             } catch (IOException ioe) { }
 
