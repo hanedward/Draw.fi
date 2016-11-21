@@ -47,6 +47,7 @@
         <activity android:name=".LobbyActivity" />
         <activity android:name=".GameCanvas"></activity>
         <activity android:name=".SandboxCanvas"></activity>
+        <activity android:name=".EndGameActivity"></activity>
     </application>
 
 </manifest>

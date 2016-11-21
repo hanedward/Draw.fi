@@ -404,6 +404,8 @@ public class GameCanvas extends AppCompatActivity {
             }
         });
         Intent finalScreen = new Intent(GameCanvas.this, EndGameActivity.class);
+       finalScreen.putExtra("me", playerMe);
+        finalScreen.putExtra("them", playerOpponent);
         startActivity(finalScreen);
     }
 

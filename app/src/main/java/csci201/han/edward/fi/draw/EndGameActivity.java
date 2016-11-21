@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -24,6 +25,7 @@ public class EndGameActivity extends AppCompatActivity {
     private TextView myUsername;
     private TextView theirUsername;
     private TextView win;
+    public FirebaseDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,9 @@ public class EndGameActivity extends AppCompatActivity {
         theirPoints = (TextView) findViewById(R.id.opponentScore);
         myStash = (TextView) findViewById(R.id.currentStash);
         win = (TextView) findViewById(R.id.resultLabel);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference();
 
         Bundle inBundle = getIntent().getExtras();
         myName = inBundle.get("me").toString();

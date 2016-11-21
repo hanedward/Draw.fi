@@ -25,7 +25,7 @@
 
     <string name="yourScoreLabelStr">YOUR SCORE:</string>
     <string name="yourScoreStr">201</string>
-    <string name="opponentScoreLabelStr">OPPONENT'S SCORE</string>
+    <string name="opponentScoreLabelStr">OPPONENT SCORE</string>
     <string name="opponentScoreStr">101</string>
     <string name="youWonStr">YOU WON!</string>
     <string name="youLostStr">YOU LOST</string>
