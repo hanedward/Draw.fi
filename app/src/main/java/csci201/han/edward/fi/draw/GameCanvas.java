@@ -122,7 +122,6 @@ public class GameCanvas extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
         myToolbar.setBackgroundColor(Color.parseColor("#FF3b5998"));
 
         //set custom colors
@@ -374,8 +373,8 @@ public class GameCanvas extends AppCompatActivity {
 
             }
         });
-//        Intent final = new Intent(GameCanvas.this, ViewImages.class);
-//        startActivity(final);
+        Intent finalScreen = new Intent(GameCanvas.this, EndGameActivity.class);
+        startActivity(finalScreen);
     }
 
 }
