@@ -72,6 +72,10 @@ public class DrawView extends View implements OnTouchListener {
         width = size;
     }
 
+    public void clearCanvas(){
+        allPoints.clear();
+    }
+
 
     @Override
     public void onDraw(Canvas canvas) {

@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -30,8 +32,8 @@ public class SandboxCanvas extends AppCompatActivity {
     private DrawView canvas;
     private Toolbar mToolbar;
     private Toolbar mToolbar1;
-    private TextView keyword;
-    private TextView timerTextView;
+    private TextView keyword, timerTextView, clearButton;
+    private ImageView smallBrush, mediumBrush, largeBrush;
 
     public int orangeColor;
     public int purpleColor;
@@ -61,6 +63,10 @@ public class SandboxCanvas extends AppCompatActivity {
         brownColor = ContextCompat.getColor(getApplicationContext(), R.color.brown);
 
 
+        clearButton = (TextView) findViewById(R.id.clearButton);
+        smallBrush = (ImageView) findViewById(R.id.smallSize);
+        mediumBrush = (ImageView) findViewById(R.id.mediumSize);
+        largeBrush = (ImageView) findViewById(R.id.largeSize);
         canvas = (DrawView) findViewById(R.id.canvas); //get the drawview
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         mToolbar1 = (Toolbar) findViewById(R.id.main_toolbar1); //get second toolbar
@@ -105,8 +111,7 @@ public class SandboxCanvas extends AppCompatActivity {
                 // If we don't mutate the drawable, then all drawables with this id will have a color filter applied to it
                 drawable.mutate();
                 //find which color the icon should be
-                int iconColor = Color.WHITE;
-                int flag = 0; //for eraser icon
+                int iconColor = Color.BLACK;
 
                 if (pencilIcon.getItemId() == R.id.menu_RED)
                     iconColor = Color.RED;
@@ -119,11 +124,9 @@ public class SandboxCanvas extends AppCompatActivity {
                 else if (pencilIcon.getItemId() == R.id.menu_PURPLE)
                     iconColor = purpleColor;
                 else if (pencilIcon.getItemId() == R.id.menu_ERASER)
-                    flag = 1;
-                else
-                    iconColor = Color.BLACK; //for black pencil
+                    iconColor= pinkColor;
 
-                if (flag < 1) drawable.setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP);
+                drawable.setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP);
                 drawable.setAlpha(255);
             }
         }
@@ -194,7 +197,31 @@ public class SandboxCanvas extends AppCompatActivity {
             }
         });
 
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.clearCanvas();
+            }
+        });
+        smallBrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.changeBrushSize(15);
+            }
+        });
+        mediumBrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.changeBrushSize(30);
+            }
 
+        });
+        largeBrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.changeBrushSize(50);
+            }
+        });
     } //end onCreate()
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -208,6 +235,7 @@ public class SandboxCanvas extends AppCompatActivity {
         }
         return true;
     }
+
 
 
 }

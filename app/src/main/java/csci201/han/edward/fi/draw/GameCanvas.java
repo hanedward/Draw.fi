@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -49,6 +51,8 @@ public class GameCanvas extends AppCompatActivity {
     private Toolbar mToolbar1;
     private TextView keyword;
     private TextView timerTextView;
+    private TextView clearButton;
+    private ImageView smallBrush, mediumBrush, largeBrush;
 
     public int orangeColor;
     public int purpleColor;
@@ -137,7 +141,36 @@ public class GameCanvas extends AppCompatActivity {
         playerMe = inBundle.get("player2").toString();
         timerTextView = (TextView) findViewById(R.id.timerLabel);
         keyword = (TextView) findViewById(R.id.keywordLabel);
+        clearButton = (TextView) findViewById(R.id.clearButton);
+        smallBrush = (ImageView) findViewById(R.id.smallSize);
+        mediumBrush = (ImageView) findViewById(R.id.mediumSize);
+        largeBrush = (ImageView) findViewById(R.id.largeSize);
 
+        smallBrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.changeBrushSize(15);
+            }
+        });
+        mediumBrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.changeBrushSize(30);
+            }
+
+        });
+        largeBrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.changeBrushSize(50);
+            }
+        });
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas.clearCanvas();
+            }
+        });
 
         mReference.child("users").child(playerMe).child("address").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -255,8 +288,7 @@ public class GameCanvas extends AppCompatActivity {
                 // If we don't mutate the drawable, then all drawables with this id will have a color filter applied to it
                 drawable.mutate();
                 //find which color the icon should be
-                int iconColor = Color.WHITE;
-                int flag = 0; //for eraser icon
+                int iconColor = Color.BLACK;
 
                 if (pencilIcon.getItemId() == R.id.menu_RED)
                     iconColor = Color.RED;
@@ -269,11 +301,9 @@ public class GameCanvas extends AppCompatActivity {
                 else if (pencilIcon.getItemId() == R.id.menu_PURPLE)
                     iconColor = purpleColor;
                 else if (pencilIcon.getItemId() == R.id.menu_ERASER)
-                    flag = 1;
-                else
-                    iconColor = Color.BLACK; //for black pencil
+                    iconColor = pinkColor;
 
-                if (flag < 1) drawable.setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP);
+                drawable.setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP);
                 drawable.setAlpha(255);
             }
         }
