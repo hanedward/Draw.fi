@@ -11,14 +11,15 @@ public class Server extends Thread {
     private Vector<ServerThread> serverThreads;
     private int port;
     GameCanvas gc;
-    int counter;
+    int playerCounter;
     public static final String TAG = "xyz";
+    int isReadyCount= 0;
 
     public Server(GameCanvas gc) {
         port = 8080;
         this.gc = gc;
         this.start();
-        counter = 0;
+        playerCounter = 0;
         serverThreads = new Vector<>();
     }
 
@@ -34,13 +35,14 @@ public class Server extends Thread {
 //                ie.printStackTrace();
 //            }
         }
-        while(counter < 2) {
+        while(playerCounter < 2) {
             try {
                 Socket s = ss.accept();
                 ServerThread st = new ServerThread(s, this);
                 serverThreads.add(st);
                 Log.d(TAG, "adding a connection to our Server");
-                counter++;
+                playerCounter++;
+                Log.d(TAG, "counter value: " + playerCounter);
             } catch (IOException ioe) {
                 System.out.println(ioe.getMessage());
             } finally {
@@ -59,7 +61,8 @@ public class Server extends Thread {
     }
 
     public void checkToSendMessage() {
-        if(counter == 2) {
+        Log.d(TAG, "isReadyCount: " + isReadyCount);
+        if(isReadyCount >= 2) {
             sendDataToAllClients((byte)2);
 //            for(ServerThread st : serverThreads) {
 //                st.sendMessage((byte)2);

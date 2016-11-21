@@ -101,6 +101,7 @@ public class GameCanvas extends AppCompatActivity {
                 if(client.getReady()) {
                     Log.d(TAG, "Now I am calling the nextActivity() function");
                     nextActivity();
+                    client.readyToSwitch = false;
                 }
         }
     };
@@ -170,6 +171,7 @@ public class GameCanvas extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue().equals(true)) {
+
                     server = new Server(GameCanvas.this);
                     Log.d(TAG, "I am the server");
                     client = new Client(ipAddress, 8080);
@@ -183,11 +185,11 @@ public class GameCanvas extends AppCompatActivity {
                     if (opponentAddress == null) Log.d(TAG, "waiting for opponent key to be set");
                     client = new Client(opponentAddress, 8080);
                     Log.d(TAG, "I am the client connecting to: " + opponentAddress);
-                    client.start();
-
                     try {
                         client.sleep(1000);
                     } catch (InterruptedException ie) {}
+                    client.start();
+
                 }
             }
 
@@ -361,7 +363,7 @@ public class GameCanvas extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 PointGenerator pointGenerator = new PointGenerator();
 
-                int score = Integer.valueOf((String)dataSnapshot.child(playerMe).child("score").getValue());
+                int score = new Integer(Long.toString((long)dataSnapshot.child(playerMe).child("score").getValue()));
                 score += pointGenerator.getPoint();
 
                 mReference.child("users").child(playerMe).child("score").setValue(score);
