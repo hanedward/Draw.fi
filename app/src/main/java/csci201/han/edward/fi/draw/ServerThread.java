@@ -37,9 +37,13 @@ public class ServerThread extends Thread{
 
     public void run() {
         while(true) {
-            String message = (String) getStringFromInputStream(is);
-            server.counter++;
-            server.checkToSendMessage();
+            try {
+                int b = is.read();
+                if(b != -1) {
+                    server.isReadyCount++;
+                    server.checkToSendMessage();
+                }
+            } catch (IOException ioe) {}
 
         }
     }
