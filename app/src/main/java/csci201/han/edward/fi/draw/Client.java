@@ -25,11 +25,10 @@ public class Client extends Thread {
     public static final String TAG = "xyz";
 
     public Client(String addr, int port) {
+        Log.d(TAG, "creating a new client");
         dstAddress = addr;
         dstPort = port;
         readyToSwitch = false;
-
-
     }
 
     public void sendToServer(byte b) {
@@ -54,20 +53,21 @@ public class Client extends Thread {
             Log.d(TAG, "output stream setup");
             is = socket.getInputStream();
             Log.d(TAG, "input stream setup");
-            Log.d(TAG, "sockets intitialized");
+            Log.d(TAG, "sockets initialized");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        while(true) {
+        while(!readyToSwitch) {
             try {
                 if (is != null) {
                     byte b = (byte) is.read();
                     if (b == 2) {
                         Log.d(TAG, "Server said I am ready to switch");
                         readyToSwitch = true;
+                        return;
                     }
                 }
             } catch (IOException ioe) { }

@@ -45,7 +45,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LobbyActivity" />
-        <activity android:name=".GameCanvas"></activity>
+        <activity android:name=".GameCanvas"
+            android:noHistory="true"></activity>
         <activity android:name=".SandboxCanvas"></activity>
         <activity android:name=".EndGameActivity"></activity>
     </application>

@@ -1,2 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_c35dfc78ada8128bde4252d4b12495a7bad3d91a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_8d6a5270501f66dfee0b12945a9abe1670ef251f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.0_59461bb9033c6fd75789f55671a9891db4353fa7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="8a372c4191f80489770a231f7be4820b204b886a">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-25.0.0_c1d96257abff407d30238d99ee4729d745c6f23d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_7beb371861444402d23020d04585c3ab55556a8e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.0_d8296b2d0b855adc87015d532bbc8d69c0d17955/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.firebaseui/firebase-ui-database/0.6.2/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="7058bce7e91ddb18e2e07b0b699019039b87e47b">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.firebaseui-firebase-ui-database-0.6.2_cd364625e55f84c77bf6101835dba5ed5e9ca210/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.8.0_f856d29a5dd59c8fa0799c16b7a9e95c6d6a45b9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="a2bcc519f2e5cb05de1b4d28e5a34c5ebf4cddd2">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b4006f9bd3029f8dc4dbf1f43ec659602e3cbbba/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_aaa743fa5dbab7c3bab6d3e226d742b059ba8a52/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.0.0_3a89a472973f040b8f383db4e64b1189d8609b80/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_d5472e8f1b657e181abf3458fc96288b3e9cae81/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="03df48d3713661d66ad024b1e406259a4c26fcac">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.8.0_b4a2c534832533d4bdbf0a6504f202761a2f7eac/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.0_37f5493107a9e9f38f56642b000d23886b6f39ef/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_ff6475a602b4926ae9e458da1c7d745febc5a578/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.8.0_303b5d4bcee2b459e0c2304e473837d162c37674/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.0/7ff0e000d1e27e356567f56c92af3b8ab912636f/picasso-2.5.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.0_b399857f963048d770beffece307853ec2859475/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.0_d0c3bcd8710fd636b5ae940a160129d940e6a528/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_04d043e1f7af436f81c66a66e47ad1f39d0c383b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="9ff04cc3470178a44512624036751a803418c2ca">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.8.0_720fd3fcb828061cb7733e6289d052653c175f2d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_650597f530824bbadedb1fd6aadc73f87b6bceac/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="190a642ba16d1421296a4d794606279b80039c59">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.8.0_b69a0a728c86271b3052b335c654ef3b85fb5f95/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.8.0_d5d3a5b0dfd050e4e676dc39e79b0caad2bac1fa/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_3d2ddb122681f4cda87c15e6bd08f2c3ddda59db/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/customtabs/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="94ba691efc31bf53264db0716d9c9ec03843ea31">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-25.0.0_2eedc9ca0e9e09f28b1579f0f68b7cc0c00722bb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.8.0_9b68de0f427eb2a52b160e6064fd332b1469a57d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="30c5a6f34949b46e8e80095619535c547291443c">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_72c20ec7d73263c07f178bcdbc7b76fa8d947148/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_dfb5c01144db5ef563ff0d4eb4d086656b61ddd2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_36141bad785419f747caa3fa4dd22403e377f25e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_a6c9e407afba43b523631579a22c3993f9038e27/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="5f47ede9561595584dca71104baa0fecb36dda87">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.8.0_b6350f852ac859df27ab8cb64efd531a697c3c68/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.17.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="23c7c34bfb3cdc0599d49e581486b179bc6b2eee">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.17.0_75c81cc33e3209671b055d5757343b67b7c4bcd0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_75d12d97b4f0699e2083f7ecafdae40598fa5dbf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/exploded-aar/com.wang.avi/library/2.1.3/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="e699699fae0092703de1d02b217f43803d0f7e0a">
+        <dex dex="/Users/tanujamohan/Desktop/fp_team_08/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.wang.avi-library-2.1.3_504cc82413d9886a9bc1f08f4e07143c88ddeb46/classes.dex" />
+    </item>
+
+</items>

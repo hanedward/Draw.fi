@@ -67,6 +67,7 @@ public class GameCanvas extends AppCompatActivity {
 
     long startTime = 0;
     int counter = 0;
+    int count = 0;
 
     public String ipAddress;
     public String opponentAddress;
@@ -115,6 +116,8 @@ public class GameCanvas extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d(TAG, "Starting the GameCanvas");
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference();
@@ -208,19 +211,24 @@ public class GameCanvas extends AppCompatActivity {
                     Log.d(TAG, "I am the server");
                     client = new Client(ipAddress, 8080);
                     client.start();
-                    try {
-                        client.sleep(1000);
-                    } catch (InterruptedException ie) {}
+//                    try {
+//                        client.sleep(1000);
+//                    } catch (InterruptedException ie) {}
                 } else {
 
+                    if(count == 0) {
+
 //                    while(opponentAddress == null) Log.d(TAG, "waiting for opponent key to be set");
-                    if (opponentAddress == null) Log.d(TAG, "waiting for opponent key to be set");
-                    client = new Client(opponentAddress, 8080);
-                    Log.d(TAG, "I am the client connecting to: " + opponentAddress);
-                    try {
-                        client.sleep(1000);
-                    } catch (InterruptedException ie) {}
-                    client.start();
+                        if (opponentAddress == null)
+                            Log.d(TAG, "waiting for opponent key to be set");
+                        client = new Client(opponentAddress, 8080);
+                        Log.d(TAG, "I am the client connecting to: " + opponentAddress);
+//                    try {
+//                        client.sleep(1000);
+//                    } catch (InterruptedException ie) {}
+                        client.start();
+                        count++;
+                    }
 
                 }
             }
@@ -404,9 +412,11 @@ public class GameCanvas extends AppCompatActivity {
             }
         });
         Intent finalScreen = new Intent(GameCanvas.this, EndGameActivity.class);
-       finalScreen.putExtra("me", playerMe);
+        finalScreen.putExtra("me", playerMe);
         finalScreen.putExtra("them", playerOpponent);
+        finalScreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(finalScreen);
+        this.finish();
     }
 
 }
