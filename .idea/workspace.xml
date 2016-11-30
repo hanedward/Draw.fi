@@ -1953,8 +1953,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="11" />
-    <option name="y" value="23" />
+    <option name="x" value="40" />
+    <option name="y" value="174" />
     <option name="width" value="1260" />
     <option name="height" value="773" />
   </component>
@@ -2060,7 +2060,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="1115fb5558974005" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fp_team_08-master-3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EmpoweringSally" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -2336,7 +2336,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="11" y="23" width="1260" height="773" extended-state="0" />
+    <frame x="40" y="174" width="1260" height="773" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
