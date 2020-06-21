@@ -1,3 +1,3 @@
 # Test 2
 # drawfiapp
-![Login & Lobby Screen](https://gifs.com/gif/login-screen-lobby-screen-gZOxMk)
+![Login & Lobby Screen](https://j.gifs.com/gZOxMk.gif)
