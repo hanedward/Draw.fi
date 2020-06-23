@@ -6,4 +6,13 @@ A sandbox mode is also available for freeform drawing.<br><br>
 <img src="https://j.gifs.com/gZOxMk.gif" width="375" height="600"/><br><br>
 
 ## Lobby Screen
-<img src="https://j.gifs.com/ANzQLB.gif" width="375" height="600"/>
+<img src="https://j.gifs.com/ANzQLB.gif" width="375" height="600"/><br><br>
+
+## Sandbox Mode Pt. 1
+<img src="https://j.gifs.com/L7OA9A.gif" width="375" height="600"/><br><br>
+
+## Sandbox Mode Pt. 2
+<img src="https://j.gifs.com/4QjWxn.gif" width="375" height="600"/><br><br>
+
+## Sandbox Mode Pt. 3
+<img src="https://j.gifs.com/k8kXl6.gif" width="375" height="600"/><br><br>
